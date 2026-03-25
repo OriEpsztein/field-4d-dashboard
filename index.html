@@ -172,6 +172,10 @@
             justify-content: center;
             padding: 40px 20px;
             gap: 15px;
+            background-image: url('Picture1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         #home-page.active {
@@ -595,7 +599,160 @@
             flex-shrink: 0;
         }
 
-        /* Info tooltip popup */
+        /* --- Filter Toolbar --- */
+        .filter-btn-wrap {
+            position: relative;
+        }
+
+        .filter-btn-wrap .icon-btn.filter-open {
+            background-color: #82c3ab;
+            color: #333f48;
+        }
+
+        .filter-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: #ffffff;
+            border: 1.5px solid #b8d1c8;
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(51, 63, 72, 0.18);
+            z-index: 200;
+            min-width: 220px;
+            padding: 0;
+            animation: dropIn 0.15s ease;
+            overflow: hidden;
+        }
+
+        .filter-dropdown.open {
+            display: block;
+        }
+
+        .filter-tabs {
+            display: flex;
+            border-bottom: 1.5px solid #d1e2da;
+        }
+
+        .filter-tab {
+            flex: 1;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #4a555e;
+            background: #f7f8f3;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-tab.active {
+            background: #ffffff;
+            color: #059669;
+            box-shadow: inset 0 -2px 0 #82c3ab;
+        }
+
+        .filter-tab:hover:not(.active) {
+            background: #eef5f1;
+        }
+
+        .filter-panel {
+            display: none;
+            padding: 6px 0;
+        }
+
+        .filter-panel.active {
+            display: block;
+        }
+
+        .filter-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 14px;
+            border-top: 1px solid #eef2f0;
+        }
+
+        .filter-action-btn {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #82c3ab;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: background 0.15s;
+        }
+
+        .filter-action-btn:hover {
+            background: #eef5f1;
+        }
+
+        .filter-action-btn.clear {
+            color: #ef4444;
+        }
+
+        .filter-action-btn.clear:hover {
+            background: #fef2f2;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .filter-item:hover {
+            background: #f0f7f4;
+        }
+
+        /* Standard Checkbox Reset */
+        .filter-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #82c3ab;
+        }
+
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #333f48;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .dot-active {
+            background: #059669;
+        }
+
+        .dot-inactive {
+            background: #ef4444;
+        }
+
+        .dot-indefinite {
+            background: #9ca3af;
+        }
+
+        .dot-replaced {
+            background: #ea580c;
+        }
+
         .info-popup {
             display: none;
             position: absolute;
@@ -1025,10 +1182,49 @@
             padding: 20px 0;
             animation: ping-blink 1s ease-in-out infinite alternate;
         }
+
+        /* --- Toast Notification --- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333f48;
+            color: #82c3ab;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
     </style>
 </head>
 
 <body>
+    <div id="copy-toast" class="toast">
+        <svg viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
+        </svg>
+        Copied to clipboard!
+    </div>
 
     <header>
         <div class="header-left">
@@ -1056,10 +1252,7 @@
                         <span class="sort-option-left">
                             Last Seen
                             <span class="info-badge">!</span>
-                            <div class="info-popup">Updated at the moment you press Sort.<br>Sensors transmit data every
-                                3 min — values shown reflect the last recorded time at sort.</div>
-                        </span>
-                        <span class="arrow" id="arrow-lastseen">↑</span>
+                            <div class="info-popup">Updated at the moment you press Sort.
                     </button>
                     <button class="sort-option" id="sort-status" onclick="setSort('status')">
                         <span class="sort-option-left">Activity</span>
@@ -1073,12 +1266,94 @@
                         <span class="sort-option-left">
                             Coordinates
                             <span class="info-badge">!</span>
-                            <div class="info-popup">Displays the unique 10-digit LLA identifier for each sensor.</div>
+                            <div class="info-popup">If are coordinates</div>
                         </span>
                         <span class="arrow" id="arrow-lla">↑</span>
                     </button>
                 </div>
             </div>
+
+            <div class="filter-btn-wrap">
+                <button class="icon-btn" aria-label="Filter" id="filter-btn" onclick="toggleFilterPanel()">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
+                    </svg>
+                </button>
+                <div class="filter-dropdown" id="filter-dropdown">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" id="ftab-activity"
+                            onclick="switchFilterTab('activity')">Activity</button>
+                        <button class="filter-tab" id="ftab-label" onclick="switchFilterTab('label')">Label</button>
+                    </div>
+
+                    <!-- Activity Panel -->
+                    <div class="filter-panel active" id="fpanel-activity">
+                        <div class="filter-item" onclick="toggleFilter('active')">
+                            <input type="checkbox" id="f-active" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleFilter('active')">
+                            <span class="filter-label"><span class="filter-dot dot-active"></span> Active</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleFilter('inactive')">
+                            <input type="checkbox" id="f-inactive" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleFilter('inactive')">
+                            <span class="filter-label"><span class="filter-dot dot-inactive"></span> Inactive</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleFilter('indefinite')">
+                            <input type="checkbox" id="f-indefinite" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleFilter('indefinite')">
+                            <span class="filter-label"><span class="filter-dot dot-indefinite"></span> Indefinite</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleFilter('replaced')">
+                            <input type="checkbox" id="f-replaced" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleFilter('replaced')">
+                            <span class="filter-label"><span class="filter-dot dot-replaced"></span> Replaced</span>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="filter-action-btn" onclick="filterSelectAll('activity')">Select All</button>
+                            <button class="filter-action-btn clear" onclick="filterClearAll('activity')">Clear</button>
+                        </div>
+                    </div>
+
+                    <!-- Label Panel -->
+                    <div class="filter-panel" id="fpanel-label">
+                        <div class="filter-item" onclick="toggleLabelFilter('NORTH')">
+                            <input type="checkbox" id="fl-NORTH" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('NORTH')">
+                            <span class="filter-label">NORTH</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleLabelFilter('SOUTH')">
+                            <input type="checkbox" id="fl-SOUTH" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('SOUTH')">
+                            <span class="filter-label">SOUTH</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleLabelFilter('EAST')">
+                            <input type="checkbox" id="fl-EAST" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('EAST')">
+                            <span class="filter-label">EAST</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleLabelFilter('WEST')">
+                            <input type="checkbox" id="fl-WEST" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('WEST')">
+                            <span class="filter-label">WEST</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleLabelFilter('CENTER')">
+                            <input type="checkbox" id="fl-CENTER" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('CENTER')">
+                            <span class="filter-label">CENTER</span>
+                        </div>
+                        <div class="filter-item" onclick="toggleLabelFilter('')">
+                            <input type="checkbox" id="fl-empty" class="filter-checkbox" checked
+                                onclick="event.stopPropagation(); toggleLabelFilter('')">
+                            <span class="filter-label">N/A</span>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="filter-action-btn" onclick="filterSelectAll('label')">Select All</button>
+                            <button class="filter-action-btn clear" onclick="filterClearAll('label')">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <button class="icon-btn" aria-label="Upload data">
                 <svg viewBox="0 0 24 24">
                     <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z" />
@@ -1093,15 +1368,15 @@
         <div class="header-center" style="display:flex;align-items:center;justify-content:center;gap:15px;">
             <img src="logo.png" alt="Field 4D" style="height:48px;">
             <div id="header-meta"
-                style="text-align:left; opacity:0.9; font-weight:500; font-size:0.95rem; color:var(--header-text-sub); display:flex; align-items:center; gap:8px;">
-                <span id="header-mac-line" style="color:#82c3ab; font-weight:700; letter-spacing:0.5px;">MAC: <span
+                style="text-align:left; font-weight:500; font-size:0.95rem; color:#ffffff; display:flex; align-items:center; gap:8px;">
+                <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px;">MAC: <span
                         id="header-mac">101</span></span>
-                <span style="opacity:0.5">|</span>
-                <span id="header-exp-name">PEPER</span>
-                <span style="opacity:0.5">|</span>
+                <span>|</span>
+                <span id="header-exp-name">PEPPER</span>
+                <span>|</span>
                 <span>Location: <span id="header-location">GREENHOUSE</span></span>
-                <span style="opacity:0.5">|</span>
-                <span>Active: <strong style="color:#F7F8F3;"><span id="active-stats">0/0</span></strong></span>
+                <span>|</span>
+                <span>Active: <strong style="color:#ffffff;"><span id="active-stats">0/0</span></strong></span>
             </div>
         </div>
         <div class="header-right" style="gap:15px">
@@ -1209,7 +1484,7 @@
     <div id="exp-modal" class="modal-overlay">
         <div class="modal" style="max-width: 450px;">
             <div class="modal-header">
-                <h2 class="modal-title" style="margin:0; font-size:1.4rem;">Start New Experiment</h2>
+                <h2 class="modal-title" style="margin:0; font-size:1.4rem;">Experiment management </h2>
                 <div class="modal-actions">
                     <button class="icon-btn close-btn" onclick="closeExpModal()" aria-label="Close">
                         <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
@@ -1321,10 +1596,11 @@
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; position:relative;">
 
                     <!-- Left: Current -->
-                    <div style="background:#f8faf9; padding:20px; border-radius:12px; border:1px solid #d1e2da;">
+                    <div id="switch-old-unit-card"
+                        style="background:#f8faf9; padding:20px; border-radius:12px; border:1px solid #d1e2da; transition: all 0.3s ease-in-out;">
                         <h3
                             style="margin:0 0 15px 0; color:#4a555e; font-size:1rem; text-transform:uppercase; letter-spacing:0.5px">
-                            Current Unit</h3>
+                            Current Sensor</h3>
                         <div id="switch-old-info">
                             <div class="detail-label">Sensor Name</div>
                             <div class="detail-value" id="switch-old-name" style="margin-bottom:10px">Sensor 011</div>
@@ -1344,11 +1620,6 @@
                         </div>
                         <button class="ping-btn" style="margin-top:20px; width:100%; justify-content:center"
                             onclick="pingSpecificSensor('old')">Ping Current</button>
-                    </div>
-
-                    <!-- Divider -->
-                    <div
-                        style="position:absolute; left:50%; top:20px; bottom:20px; border-left:1px dashed #b8d1c8; transform:translateX(-50%)">
                     </div>
 
                     <!-- Right: New -->
@@ -1400,15 +1671,41 @@
         const homeBtn = document.getElementById('home-btn');
         const goDashBtn = document.getElementById('go-dashboard-btn');
 
+        let activeFilters = {
+            active: true,
+            inactive: true,
+            indefinite: true,
+            replaced: true
+        };
+
+        let activeLabelFilters = {
+            'NORTH': true,
+            'SOUTH': true,
+            'EAST': true,
+            'WEST': true,
+            'CENTER': true,
+            '': true
+        };
+
+        function copyWithFeedback(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('copy-toast');
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            });
+        }
+
         function showHome() {
             homePage.classList.add('active');
             dashPage.classList.remove('active');
             header.style.display = 'none';
 
-            // Set defaults: MAC 101 and PEPER
+            // Set defaults: MAC 101 and PEPPER
             document.getElementById('sel-mac').value = '101';
             handleMacSelection();
-            document.getElementById('sel-exp').value = 'PEPER';
+            document.getElementById('sel-exp').value = 'PEPPER';
         }
 
         function handleMacSelection() {
@@ -1420,8 +1717,8 @@
 
             if (mac === '101') {
                 const opt = document.createElement('option');
-                opt.value = 'PEPER';
-                opt.textContent = 'PEPER';
+                opt.value = 'PEPPER';
+                opt.textContent = 'PEPPER';
                 expSelect.appendChild(opt);
             }
         }
@@ -1455,13 +1752,13 @@
 
             // Set Header context
             document.getElementById('header-meta').innerHTML = `
-                <span id="header-mac-line" style="color:#82c3ab; font-weight:700; letter-spacing:0.5px;">MAC: <span id="header-mac">${mac || '—'}</span></span>
-                <span style="opacity:0.5">|</span>
-                <span id="header-exp-name">${expName}</span>
-                <span style="opacity:0.5">|</span>
-                <span>Location: <span id="header-location">${location}</span></span>
-                <span style="opacity:0.5">|</span>
-                <span>Active: <strong style="color:#F7F8F3;"><span id="active-stats">${sensors.filter(s => !s.inactive).length}/${totalSensors}</span></strong></span>
+                <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px; color:#ffffff;">MAC: <span id="header-mac">${mac || '—'}</span></span>
+                <span>|</span>
+                <span id="header-exp-name" style="color:#ffffff;">${expName}</span>
+                <span>|</span>
+                <span style="color:#ffffff;">Location: <span id="header-location">${location}</span></span>
+                <span>|</span>
+                <span style="color:#ffffff;">Active: <strong style="color:#ffffff;"><span id="active-stats">${sensors.filter(s => !s.inactive).length}/${totalSensors}</span></strong></span>
             `;
 
             // Render grid to reflect potential new names in UI
@@ -1576,7 +1873,7 @@
                     battery: '--',
                     rh: '--',
                     alert: null,
-                    label: 'DECOMMISSIONED'
+                    label: ''
                 });
             }
 
@@ -1589,9 +1886,12 @@
         function pad(n) { return String(n).padStart(2, '0'); }
 
         function renderGrid() {
-            // Sort a copy
-            let sorted = [...sensors];
+            // Filter then Sort
+            let filtered = sensors.filter(s => activeFilters[s.status] && activeLabelFilters[s.label]);
+            let sorted = [...filtered];
+
             const asc = sortAsc[currentSort];
+
 
             sorted.sort((a, b) => {
                 let v;
@@ -1631,15 +1931,15 @@
                 let infoHtml = '';
                 if (s.status === 'replaced') {
                     infoHtml = `
-                        <div class="lla-wrap">LLA: <span>${s.lla}</span></div>
-                        <div class="lla-wrap" style="color:#ea580c; font-weight:700">Replaced with: <span>${s.replacedWithLla}</span></div>
+                        <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
+                        <div class="lla-wrap" style="color:#ea580c; font-weight:700">Replaced with: <span>${s.replacedWithLla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.replacedWithLla}')" title="Copy New LLA">${iconCopy}</button></div>
                     `;
                 } else {
                     // active, inactive, or indefinite
                     infoHtml = `
                         <div>last seen: <span class="time-val">${s.lastSeenStr}</span></div>
                         <div class="lla-wrap">LABEL: <span>${s.label}</span></div>
-                        <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="navigator.clipboard.writeText('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
+                        <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
                     `;
                 }
 
@@ -1670,6 +1970,66 @@
             dd.classList.toggle('open');
         }
 
+        // ── Filter controls ───────────────────────────────────────────
+        function toggleFilterPanel() {
+            const btn = document.getElementById('filter-btn');
+            const dd = document.getElementById('filter-dropdown');
+            btn.classList.toggle('filter-open');
+            dd.classList.toggle('open');
+        }
+
+        function toggleFilter(status) {
+            activeFilters[status] = !activeFilters[status];
+            document.getElementById('f-' + status).checked = activeFilters[status];
+            renderGrid();
+        }
+
+        function toggleLabelFilter(lbl) {
+            activeLabelFilters[lbl] = !activeLabelFilters[lbl];
+            const id = lbl === '' ? 'fl-empty' : 'fl-' + lbl;
+            document.getElementById(id).checked = activeLabelFilters[lbl];
+            renderGrid();
+        }
+
+        function switchFilterTab(tab) {
+            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.filter-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('ftab-' + tab).classList.add('active');
+            document.getElementById('fpanel-' + tab).classList.add('active');
+        }
+
+        function filterSelectAll(type) {
+            if (type === 'activity') {
+                Object.keys(activeFilters).forEach(k => {
+                    activeFilters[k] = true;
+                    document.getElementById('f-' + k).checked = true;
+                });
+            } else {
+                Object.keys(activeLabelFilters).forEach(k => {
+                    activeLabelFilters[k] = true;
+                    const id = k === '' ? 'fl-empty' : 'fl-' + k;
+                    document.getElementById(id).checked = true;
+                });
+            }
+            renderGrid();
+        }
+
+        function filterClearAll(type) {
+            if (type === 'activity') {
+                Object.keys(activeFilters).forEach(k => {
+                    activeFilters[k] = false;
+                    document.getElementById('f-' + k).checked = false;
+                });
+            } else {
+                Object.keys(activeLabelFilters).forEach(k => {
+                    activeLabelFilters[k] = false;
+                    const id = k === '' ? 'fl-empty' : 'fl-' + k;
+                    document.getElementById(id).checked = false;
+                });
+            }
+            renderGrid();
+        }
+
         // Close dropdowns when clicking outside
         document.addEventListener('click', e => {
             const sortWrap = document.querySelector('.sort-btn-wrap');
@@ -1678,7 +2038,14 @@
                 document.getElementById('sort-dropdown').classList.remove('open');
             }
 
+            const filterWrap = document.querySelector('.filter-btn-wrap');
+            if (filterWrap && !filterWrap.contains(e.target)) {
+                document.getElementById('filter-btn').classList.remove('filter-open');
+                document.getElementById('filter-dropdown').classList.remove('open');
+            }
+
             const settingsWrap = document.querySelector('.settings-btn-wrap');
+
             if (settingsWrap && !settingsWrap.contains(e.target)) {
                 document.getElementById('settings-dropdown').classList.remove('open');
             }
@@ -1733,7 +2100,10 @@
 
             if (isEditMode) {
 
-                document.getElementById('modal-title').innerHTML = `Edit Sensor <input type="text" id="edit-sensor-name" class="modal-input" style="width:80px; display:inline-block; margin-left:10px" value="${s.sensorNum}"> ${expTag}`;
+                const nameField = s.status === 'indefinite'
+                    ? `Edit Sensor <input type="text" id="edit-sensor-name" class="modal-input" style="width:80px; display:inline-block; margin-left:10px" value="${s.sensorNum}">`
+                    : `Edit Sensor ${s.sensorNum} <input type="hidden" id="edit-sensor-name" value="${s.sensorNum}">`;
+                document.getElementById('modal-title').innerHTML = `${nameField} ${expTag}`;
 
                 const alertsValue = s.alert || '';
 
@@ -1830,17 +2200,21 @@
                         ${alertsHtml}
                     </div>
 
+                    ${s.status !== 'replaced' ? `
                     <div style="grid-column: span 2; margin-top:10px; padding-top:20px; border-top:1px dashed #b8d1c8; display:flex; justify-content:center; gap:12px;">
                         <button id="modal-edit-btn" class="edit-btn" style="width:120px; justify-content:center" onclick="toggleEditMode()">
                             <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg><span>Edit</span>
                         </button>
+                        ${s.status !== 'indefinite' ? `
                         <button class="edit-btn" style="background:#f0b44a; border-color:#d49a37; color:#fff; gap:8px" onclick="openSwitchModal()">
                             <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:currentColor">
                                 <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.41 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM5 16l4-4H6c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.59 4 12 4c-4.42 0-8 3.58-8 8H1L5 16z"/>
                             </svg>
                             <span>Swap / Switch Sensor</span>
                         </button>
+                        ` : ''}
                     </div>
+                    ` : ''}
                 `;
             }
         }
@@ -2069,13 +2443,13 @@
                 coordsWrap.style.display = 'none';
             }
 
-            // Reset new info
+            // Reset new info — only show LLAs from Indefinite sensors
             const select = document.getElementById('switch-new-lla');
             select.innerHTML = '<option value="">— Choose LLA —</option>';
-            availableLlas.forEach(lla => {
+            sensors.filter(s => s.status === 'indefinite').forEach(s => {
                 const opt = document.createElement('option');
-                opt.value = lla;
-                opt.textContent = lla;
+                opt.value = s.lla;
+                opt.textContent = s.lla;
                 select.appendChild(opt);
             });
 
@@ -2090,22 +2464,16 @@
 
         function pingSpecificSensor(type) {
             if (type === 'old') {
-                // Find the card for currentModalSensor and blink it
-                const cards = document.querySelectorAll('.card');
-                let target = null;
-                cards.forEach(c => {
-                    const numSpan = c.querySelector('.card-num-text');
-                    if (numSpan && numSpan.innerText === currentModalSensor.sensorNum) {
-                        target = c;
-                    }
-                });
+                const card = document.getElementById('switch-old-unit-card');
+                card.style.transform = 'scale(1.05)';
+                card.style.boxShadow = '0 0 20px rgba(130, 195, 171, 0.5)';
+                card.style.borderColor = '#82c3ab';
 
-                if (target) {
-                    target.classList.remove('pinging');
-                    void target.offsetWidth;
-                    target.classList.add('pinging');
-                    setTimeout(() => target.classList.remove('pinging'), 1200);
-                }
+                setTimeout(() => {
+                    card.style.transform = 'scale(1)';
+                    card.style.boxShadow = '';
+                    card.style.borderColor = '#d1e2da';
+                }, 600);
             } else {
                 // For 'new' unit, we animate the modal card to "pop"
                 const newLla = document.getElementById('switch-new-lla').value.trim();
