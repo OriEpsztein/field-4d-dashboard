@@ -37,8 +37,6 @@
 
         body {
             background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
             min-height: 100vh;
         }
 
@@ -83,6 +81,7 @@
 
         .ping-btn {
             background: #f59e0b;
+            /* Orange */
             color: #ffffff;
             border: none;
             border-radius: 20px;
@@ -166,11 +165,7 @@
            HOME PAGE
         ============================================================ */
         #home-page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            min-height: 100vh;
+            min-height: calc(100vh - 64px);
             display: none;
             flex-direction: column;
             align-items: center;
@@ -181,7 +176,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: 100;
         }
 
         #home-page.active {
@@ -492,15 +486,18 @@
         }
 
         /* ── Sort Toolbar ── */
+        /* Wrapper on the Filter icon button */
         .sort-btn-wrap {
             position: relative;
         }
 
+        /* The filter icon gets a highlight when dropdown is open */
         .sort-btn-wrap .icon-btn.sort-open {
             background-color: #82c3ab;
             color: #333f48;
         }
 
+        /* Dropdown panel */
         .sort-dropdown {
             display: none;
             position: absolute;
@@ -532,6 +529,7 @@
             }
         }
 
+        /* Panel header */
         .sort-dropdown-title {
             font-size: 0.7rem;
             font-weight: 800;
@@ -584,6 +582,7 @@
             color: #82c3ab;
         }
 
+        /* ! info badge */
         .info-badge {
             display: inline-flex;
             align-items: center;
@@ -715,6 +714,7 @@
             background: #f0f7f4;
         }
 
+        /* Standard Checkbox Reset */
         .filter-checkbox {
             width: 18px;
             height: 18px;
@@ -999,7 +999,28 @@
         .modal-input:focus {
             outline: none;
             border-color: #82c3ab;
-            box-shadow: 0 0 0 3px rgba(130, 195, 171, 0.2);
+            box-shadow: 0 0 0 3px rgba(130, 195, 171, 0.15);
+        }
+
+        .card-alert-badge {
+            background: #ffebeb;
+            color: #ef4444;
+            font-size: 0.95rem;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-right: auto;
+            margin-left: 8px;
+            border: 1px solid #fee2e2;
+            cursor: help;
+            transition: transform 0.2s ease;
+        }
+
+        .card-alert-badge:hover {
+            transform: scale(1.15);
         }
 
         .coord-inputs {
@@ -1056,6 +1077,160 @@
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        /* Modal Tabs Styling */
+        .modal-tabs {
+            display: flex;
+            gap: 5px;
+            background: #f3f4f6;
+            padding: 4px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-tab-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #6b7280;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-tab-btn.active {
+            background: #ffffff;
+            color: #10b981;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .modal-view-panel {
+            display: none;
+        }
+
+        .modal-view-panel.active {
+            display: block;
+        }
+
+        /* 3D MAP STYLES */
+        .map-container {
+            perspective: 1200px;
+            width: 100%;
+            height: 550px;
+            background: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 0);
+            background-size: 24px 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .map-grid-3d {
+            width: 450px;
+            height: 450px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .map-grid-3d.view-3d {
+            transform: rotateX(60deg) rotateZ(-30deg);
+        }
+
+        .map-grid-3d.view-2d {
+            transform: rotateX(0deg) rotateZ(0deg);
+        }
+
+        .grid-plane {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(16, 185, 129, 0.15);
+            background-image:
+                linear-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            /* 450 / 15 */
+            pointer-events: none;
+        }
+
+        .sensor-point {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffffff;
+        }
+
+        .sensor-point:hover {
+            transform: scale(1.6) translateZ(10px) !important;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .sensor-point::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) rotateX(-60deg) rotateZ(30deg);
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .view-2d .sensor-point::after {
+            transform: translateX(-50%) rotateX(0deg) rotateZ(0deg);
+            bottom: 22px;
+        }
+
+        .sensor-point:hover::after {
+            opacity: 1;
+            visibility: visible;
+            bottom: 25px;
+        }
+
+        .toggle-group button {
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .toggle-group button.active {
+            background: #ffffff;
+            color: #10b981;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         /* Coordinate error in card */
@@ -1240,6 +1415,7 @@
                             d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" />
                     </svg>
                 </button>
+                <!-- Sort dropdown anchored to this button -->
                 <div class="sort-dropdown" id="sort-dropdown">
                     <div class="sort-dropdown-title">Sort by</div>
                     <button class="sort-option active" id="sort-name" onclick="setSort('name')">
@@ -1288,6 +1464,7 @@
                         <button class="filter-tab" id="ftab-label" onclick="switchFilterTab('label')">Label</button>
                     </div>
 
+                    <!-- Activity Panel -->
                     <div class="filter-panel active" id="fpanel-activity">
                         <div class="filter-item" onclick="toggleFilter('active')">
                             <input type="checkbox" id="f-active" class="filter-checkbox" checked
@@ -1315,36 +1492,10 @@
                         </div>
                     </div>
 
+                    <!-- Label Panel -->
                     <div class="filter-panel" id="fpanel-label">
-                        <div class="filter-item" onclick="toggleLabelFilter('NORTH')">
-                            <input type="checkbox" id="fl-NORTH" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('NORTH')">
-                            <span class="filter-label">NORTH</span>
-                        </div>
-                        <div class="filter-item" onclick="toggleLabelFilter('SOUTH')">
-                            <input type="checkbox" id="fl-SOUTH" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('SOUTH')">
-                            <span class="filter-label">SOUTH</span>
-                        </div>
-                        <div class="filter-item" onclick="toggleLabelFilter('EAST')">
-                            <input type="checkbox" id="fl-EAST" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('EAST')">
-                            <span class="filter-label">EAST</span>
-                        </div>
-                        <div class="filter-item" onclick="toggleLabelFilter('WEST')">
-                            <input type="checkbox" id="fl-WEST" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('WEST')">
-                            <span class="filter-label">WEST</span>
-                        </div>
-                        <div class="filter-item" onclick="toggleLabelFilter('CENTER')">
-                            <input type="checkbox" id="fl-CENTER" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('CENTER')">
-                            <span class="filter-label">CENTER</span>
-                        </div>
-                        <div class="filter-item" onclick="toggleLabelFilter('')">
-                            <input type="checkbox" id="fl-empty" class="filter-checkbox" checked
-                                onclick="event.stopPropagation(); toggleLabelFilter('')">
-                            <span class="filter-label">N/A</span>
+                        <div id="dynamic-label-filters">
+                            <!-- Populated dynamically via JS -->
                         </div>
                         <div class="filter-actions">
                             <button class="filter-action-btn" onclick="filterSelectAll('label')">Select All</button>
@@ -1396,11 +1547,15 @@
                 </button>
                 <div class="settings-dropdown" id="settings-dropdown">
                     <button class="settings-option" onclick="openExpModal()">START / END EXP</button>
+                    <button class="settings-option" onclick="openAlertsModal()">ALERTS</button>
+                    <button class="settings-option" onclick="openLabelsModal()">LABELS</button>
+                    <button class="settings-option" onclick="openMapModal()">3D MAP VIEW</button>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- ======================== HOME PAGE ======================== -->
     <div id="home-page" class="active">
         <div class="home-logo">
             <img src="pictures/logo.png" alt="Field 4D Logo">
@@ -1452,12 +1607,14 @@
         </div>
     </div>
 
+    <!-- ======================== DASHBOARD PAGE ======================== -->
     <div id="dashboard-page">
         <main>
             <div class="grid-container" id="sensor-grid"></div>
         </main>
     </div>
 
+    <!-- ======================== MODAL ======================== -->
     <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -1472,16 +1629,18 @@
                 </div>
             </div>
             <div class="modal-grid" id="modal-details">
-                </div>
+                <!-- Data filled by JS -->
+            </div>
         </div>
     </div>
 
+    <!-- ======================== EXP MODAL ======================== -->
     <div id="exp-modal" class="modal-overlay" onclick="closeExpModal()">
         <div class="modal-content" style="max-width: 520px;" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Experiment Management</h2>
                 <div class="modal-actions">
-                    <button class="icon-btn close-btn" style="background:#eef2f0; color:#4a555e;" onclick="closeExpModal()" aria-label="Close">
+                    <button class="icon-btn close-btn" onclick="closeExpModal()" aria-label="Close">
                         <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
                             <path
                                 d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
@@ -1491,6 +1650,7 @@
             </div>
             <div class="modal-body" style="padding-top: 20px;">
 
+                <!-- View 0: Select Action -->
                 <div id="exp-view-select" class="exp-view active">
                     <h2>What would you like to do?</h2>
                     <button class="exp-btn-large" onclick="goToExpView('start-1')">START NEW EXP</button>
@@ -1498,6 +1658,7 @@
                         onclick="goToExpView('end-1')">END CURRENT EXP</button>
                 </div>
 
+                <!-- View 1: Start Step 1 -->
                 <div id="exp-view-start-1" class="exp-view">
                     <div style="margin-bottom:20px">
                         <label
@@ -1526,6 +1687,7 @@
                     </div>
                 </div>
 
+                <!-- View 2: Start Step 2 -->
                 <div id="exp-view-start-2" class="exp-view">
                     <h2>Verify Sensors</h2>
                     <div style="text-align:center; font-weight:700; color:#4a555e; font-size:1.1rem"
@@ -1553,6 +1715,7 @@
                     </div>
                 </div>
 
+                <!-- View 3: End Step 1 -->
                 <div id="exp-view-end-1" class="exp-view">
                     <h2>End Current Experiment</h2>
                     <p style="text-align:center; color:#606f7b; font-size:0.9rem; margin:0 0 15px 0;">To end the
@@ -1562,13 +1725,13 @@
                         <label class="detail-label" style="display:block; margin-bottom:5px;">Name of EXP</label>
                         <input type="text" id="exp-end-name-1" class="modal-input" placeholder="Current EXP name...">
                     </div>
-                    <div style="margin-top: 10px;">
+                    <div>
                         <label class="detail-label" style="display:block; margin-bottom:5px;">Confirm Name</label>
                         <input type="text" id="exp-end-name-2" class="modal-input" placeholder="Type it again...">
                     </div>
 
                     <button class="edit-btn saving"
-                        style="width:100%; justify-content:center; margin-top:20px; background:#b91c1c"
+                        style="width:100%; justify-content:center; margin-top:10px; background:#b91c1c"
                         onclick="submitExpEnd()">Confirm End</button>
                 </div>
 
@@ -1576,12 +1739,303 @@
         </div>
     </div>
 
-    <div id="switch-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
+    <!-- ======================== SWITCH MODAL ======================== -->
+    <!-- ======================== ALERTS MODAL ======================== -->
+    <div id="alerts-modal" class="modal-overlay" onclick="closeAlertsModal()">
+        <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Alerts Management</h2>
+                <div class="modal-actions">
+                    <button class="icon-btn close-btn" onclick="closeAlertsModal()" aria-label="Close">
+                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-top: 15px;">
+                <div class="modal-tabs">
+                    <button class="modal-tab-btn active" id="btn-alerts-assign"
+                        onclick="switchAlertsTab('assign')">Assign</button>
+                    <button class="modal-tab-btn" id="btn-alerts-view" onclick="switchAlertsTab('view')">View
+                        All</button>
+                </div>
+
+                <!-- ASSIGN VIEW -->
+                <div id="alerts-assign-view" class="modal-view-panel active">
+                    <div style="margin-bottom:20px">
+                        <label
+                            style="display:block; margin-bottom:12px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">1.
+                            Set Thresholds</label>
+                        <!-- Temp -->
+                        <div
+                            style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
+                            <h3
+                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                Temperature (°C)</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
+                                        (Below)</label>
+                                    <input type="number" id="alert-temp-min" class="modal-input" placeholder="No Min"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
+                                        (Above)</label>
+                                    <input type="number" id="alert-temp-max" class="modal-input" placeholder="No Max"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RH -->
+                        <div
+                            style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
+                            <h3
+                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                Humidity (RH %)</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
+                                        (Below)</label>
+                                    <input type="number" id="alert-rh-min" class="modal-input" placeholder="No Min"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
+                                        (Above)</label>
+                                    <input type="number" id="alert-rh-max" class="modal-input" placeholder="No Max"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Light -->
+                        <div
+                            style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
+                            <h3
+                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                Light (Lux)</h3>
+                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
+                                        (Below)</label>
+                                    <input type="number" id="alert-light-min" class="modal-input" placeholder="No Min"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
+                                        (Above)</label>
+                                    <input type="number" id="alert-light-max" class="modal-input" placeholder="No Max"
+                                        style="width:100%; height:34px; font-size:0.9rem">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:15px">
+                        <label
+                            style="display:block; margin-bottom:8px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">2.
+                            Select Sensors to Apply</label>
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:10px;">
+                            <input type="text" id="alerts-sensor-search" placeholder="Search sensor name..."
+                                class="modal-input"
+                                style="flex:1; height:34px; font-size:0.85rem; border:1px solid #b8d1c8;"
+                                onkeyup="filterAlertsSensorList()">
+                            <div style="display:flex; gap:5px">
+                                <button class="small-action-btn" onclick="alertsModalSelectAll(true)"
+                                    style="padding:6px 12px; font-size:0.75rem; background:#f0f1f4; border:1px solid #d1d5db; border-radius:4px; height:34px">All</button>
+                                <button class="small-action-btn" onclick="alertsModalSelectAll(false)"
+                                    style="padding:6px 12px; font-size:0.75rem; background:#f0f1f4; border:1px solid #d1d5db; border-radius:4px; height:34px">None</button>
+                            </div>
+                        </div>
+                        <div id="alerts-sensor-list"
+                            style="max-height: 150px; overflow-y: auto; background: #ffffff; border: 1px solid #d1e2da; border-radius: 8px; padding: 5px; display:flex; flex-direction:column;">
+                            <!-- sensors list populated here -->
+                        </div>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <button class="edit-btn saving"
+                            style="width:100%; justify-content:center; padding:14px; border-radius:10px; font-size:1.05rem;"
+                            onclick="saveAlertSettings()">Apply Thresholds to Selected</button>
+                    </div>
+                </div>
+
+                <!-- VIEW ALL VIEW -->
+                <div id="alerts-summary-view" class="modal-view-panel">
+                    <div style="margin-bottom:15px;">
+                        <input type="text" id="alerts-summary-search" placeholder="Search sensor or rule..."
+                            class="modal-input"
+                            style="width:100%; height:38px; font-size:0.9rem; border:1px solid #b8d1c8;"
+                            onkeyup="renderAlertsSummary()">
+                    </div>
+                    <div id="alerts-summary-list"
+                        style="max-height: 480px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display:flex; flex-direction:column; gap:8px;">
+                        <!-- Populate via JS -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- ======================== MAP MODAL ======================== -->
+    <div id="map-modal" class="modal-overlay" onclick="closeMapModal()">
+        <div class="modal-content" style="max-width: 900px; width: 95vw;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div>
+                    <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Field 3D/2D Map</h2>
+                    <p style="margin:2px 0 0 0; font-size:0.8rem; color:#64748b;">Spatial distribution (0,0,0) to
+                        (14,14,14)</p>
+                </div>
+                <div class="modal-actions" style="display:flex; align-items:center; gap:15px;">
+                    <div class="toggle-group"
+                        style="display:flex; background:#f1f5f9; padding:4px; border-radius:8px; border:1px solid #e2e8f0;">
+                        <button id="btn-map-3d" class="active" onclick="setMapView('3d')"
+                            style="padding:6px 12px; font-size:0.75rem; font-weight:700;">3D VIEW</button>
+                        <button id="btn-map-2d" onclick="setMapView('2d')"
+                            style="padding:6px 12px; font-size:0.75rem; font-weight:700;">2D VIEW</button>
+                    </div>
+                    <button class="icon-btn close-btn" onclick="closeMapModal()" aria-label="Close">
+                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding: 20px;">
+                <div class="map-container" id="map-canvas-container">
+                    <div id="map-grid" class="map-grid-3d view-3d">
+                        <!-- Planes and points here -->
+                    </div>
+                </div>
+                <!-- Legend -->
+                <div
+                    style="margin-top:20px; display:flex; gap:20px; justify-content:center; align-items:center; flex-wrap:wrap;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:12px; height:12px; background:#10b981; border-radius:50%;"></div>
+                        <span style="font-size:0.75rem; color:#475569; font-weight:600;">Active</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:12px; height:12px; background:#ef4444; border-radius:50%;"></div>
+                        <span style="font-size:0.75rem; color:#475569; font-weight:600;">Alert</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:12px; height:12px; background:#94a3b8; border-radius:50%;"></div>
+                        <span style="font-size:0.75rem; color:#475569; font-weight:600;">Inactive</span>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <div style="width:12px; height:12px; background:#6366f1; border-radius:50%;"></div>
+                        <span style="font-size:0.75rem; color:#475569; font-weight:600;">Replaced</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== LABELS MODAL ======================== -->
+    <div id="labels-modal" class="modal-overlay" onclick="closeLabelsModal()">
+        <div class="modal-content" style="max-width: 550px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Labels Management</h2>
+                <div class="modal-actions">
+                    <button class="icon-btn close-btn" onclick="closeLabelsModal()" aria-label="Close">
+                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-top: 15px;">
+                <div class="modal-tabs">
+                    <button class="modal-tab-btn active" id="btn-labels-assign"
+                        onclick="switchLabelsTab('assign')">Assign</button>
+                    <button class="modal-tab-btn" id="btn-labels-view" onclick="switchLabelsTab('view')">View
+                        All</button>
+                </div>
+
+                <!-- ASSIGN VIEW -->
+                <div id="labels-assign-view" class="modal-view-panel active">
+                    <div style="margin-bottom:20px">
+                        <label
+                            style="display:block; margin-bottom:8px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">New
+                            Label Name</label>
+                        <input type="text" id="new-label-input" class="modal-input" placeholder="e.g. ZONE_A"
+                            style="width:100%; padding:12px; font-size:1rem; border:1px solid #b8d1c8;">
+                    </div>
+
+                    <div style="margin-bottom:15px">
+                        <label
+                            style="display:block; margin-bottom:8px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">Select
+                            Sensors</label>
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:10px;">
+                            <input type="text" id="labels-sensor-search" placeholder="Search sensor name..."
+                                class="modal-input"
+                                style="flex:1; height:36px; font-size:0.85rem; border:1px solid #b8d1c8;"
+                                onkeyup="filterLabelsSensorList()">
+                            <div style="display:flex; gap:5px">
+                                <button class="small-action-btn" onclick="labelsModalSelectAll(true)"
+                                    style="padding:6px 12px; font-size:0.75rem; background:#f0f1f4; border:1px solid #d1d5db; border-radius:4px;">All</button>
+                                <button class="small-action-btn" onclick="labelsModalSelectAll(false)"
+                                    style="padding:6px 12px; font-size:0.75rem; background:#f0f1f4; border:1px solid #d1d5db; border-radius:4px;">None</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="labels-sensor-list"
+                        style="max-height: 250px; overflow-y: auto; background: #ffffff; border: 1px solid #d1e2da; border-radius: 8px; padding: 5px; display:flex; flex-direction:column;">
+                        <!-- sensors list populated here -->
+                    </div>
+
+                    <div style="margin-top:25px; display:flex; gap:12px;">
+                        <button class="edit-btn saving"
+                            style="flex:1; justify-content:center; padding:14px; border-radius:10px; font-size:1rem;"
+                            onclick="applyNewLabel()">Apply Label</button>
+                        <button class="edit-btn saving"
+                            style="flex:1; justify-content:center; padding:14px; border-radius:10px; font-size:1rem; background:transparent; border:1px solid #e4a1a1; color:#b91c1c;"
+                            onclick="removeNewLabel()">Remove Label</button>
+                    </div>
+                </div>
+
+                <!-- VIEW ALL VIEW -->
+                <div id="labels-summary-view" class="modal-view-panel">
+                    <div style="margin-bottom:15px;">
+                        <input type="text" id="labels-summary-search" placeholder="Search sensor or label..."
+                            class="modal-input"
+                            style="width:100%; height:38px; font-size:0.9rem; border:1px solid #b8d1c8;"
+                            onkeyup="renderLabelsSummary()">
+                    </div>
+                    <div id="labels-summary-list"
+                        style="max-height: 400px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display:flex; flex-direction:column; gap:8px;">
+                        <!-- Populate via JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======================== SWITCH MODAL ======================== -->
+    <div id="switch-modal" class="modal-overlay" onclick="closeSwitchModal()">
+        <div class="modal-content" style="max-width: 800px;" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 class="modal-title" style="margin:0; font-size:1.4rem;">Swap Sensor Unit</h2>
                 <div class="modal-actions">
-                    <button class="icon-btn close-btn" style="background:#eef2f0; color:#4a555e;" onclick="closeSwitchModal()" aria-label="Close">
+                    <button class="icon-btn close-btn" onclick="closeSwitchModal()" aria-label="Close">
                         <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
                             <path
                                 d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
@@ -1592,6 +2046,7 @@
             <div class="modal-body" style="padding-top: 15px;">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; position:relative;">
 
+                    <!-- Left: Current -->
                     <div id="switch-old-unit-card"
                         style="background:#f8faf9; padding:20px; border-radius:12px; border:1px solid #d1e2da; transition: all 0.3s ease-in-out;">
                         <h3
@@ -1618,6 +2073,7 @@
                             onclick="pingSpecificSensor('old')">Ping Current</button>
                     </div>
 
+                    <!-- Right: New -->
                     <div id="switch-new-unit-card"
                         style="background:#fff9f0; padding:20px; border-radius:12px; border:1px solid #fce8cc; transition: all 0.3s ease-in-out;">
                         <h3
@@ -1656,6 +2112,7 @@
         </div>
     </div>
 
+    <!-- MAIN SCRIPT -->
     <script>
         // ── Page navigation ──────────────────────────────────────────
         const homePage = document.getElementById('home-page');
@@ -1807,6 +2264,8 @@
                 let currentLla = (1e9 + i * 1e7 + 777);
                 mainLlas[num] = currentLla; // Store for linkage
 
+                let currentLabels = ['NORTH', 'SOUTH', 'EAST', 'WEST', 'CENTER'][Math.floor(Math.random() * 5)];
+
                 sensors.push({
                     num,
                     sensorNum,
@@ -1819,16 +2278,21 @@
                     lastSeenStr: formatDate(now),
                     lla: currentLla,
                     xyz: {
-                        x: Math.floor(Math.random() * 1000),
-                        y: Math.floor(Math.random() * 1000),
-                        z: Math.floor(Math.random() * 1000)
+                        x: Math.floor(Math.random() * 15),
+                        y: Math.floor(Math.random() * 15),
+                        z: Math.floor(Math.random() * 15)
                     },
                     temp: (12 + Math.random() * 20).toFixed(1),
                     light: Math.floor(200 + Math.random() * 800),
                     battery: 2900,
                     rh: Math.floor(30 + Math.random() * 40),
-                    alert: (Math.random() < 0.25) ? "Temperature < 9" : null,
-                    label: ['NORTH', 'SOUTH', 'EAST', 'WEST', 'CENTER'][Math.floor(Math.random() * 5)]
+                    alert: null,
+                    labels: [currentLabels],
+                    thresholds: {
+                        tempMin: null, tempMax: null,
+                        rhMin: null, rhMax: null,
+                        lightMin: null, lightMax: null
+                    }
                 });
             }
 
@@ -1858,19 +2322,25 @@
                     lastSeenStr: formatDate(now),
                     lla: (2e9 + i * 1e7 + 555), // Its own unique LLA
                     xyz: {
-                        x: Math.floor(Math.random() * 100),
-                        y: Math.floor(Math.random() * 100),
-                        z: Math.floor(Math.random() * 100)
+                        x: Math.floor(Math.random() * 15),
+                        y: Math.floor(Math.random() * 15),
+                        z: Math.floor(Math.random() * 15)
                     },
                     temp: '--',
                     light: '--',
                     battery: '--',
                     rh: '--',
                     alert: null,
-                    label: ''
+                    labels: [],
+                    thresholds: {
+                        tempMin: null, tempMax: null,
+                        rhMin: null, rhMax: null,
+                        lightMin: null, lightMax: null
+                    }
                 });
             }
 
+            renderLabelFilterUI();
             renderGrid();
         }
 
@@ -1880,8 +2350,20 @@
         function pad(n) { return String(n).padStart(2, '0'); }
 
         function renderGrid() {
+            // Check alerts before filtering/sorting
+            checkAllSensorAlerts();
+
             // Filter then Sort
-            let filtered = sensors.filter(s => activeFilters[s.status] && activeLabelFilters[s.label]);
+            let filtered = sensors.filter(s => {
+                const statusOk = activeFilters[s.status];
+                let labelOk = false;
+                if (s.labels && s.labels.length > 0) {
+                    labelOk = s.labels.some(lbl => activeLabelFilters[lbl]);
+                } else {
+                    labelOk = activeLabelFilters[''];
+                }
+                return statusOk && labelOk;
+            });
             let sorted = [...filtered];
 
             const asc = sortAsc[currentSort];
@@ -1893,8 +2375,12 @@
                 if (currentSort === 'name') v = a.num - b.num;
                 else if (currentSort === 'lastseen') v = a.lastSeenDate - b.lastSeenDate;
                 else if (currentSort === 'status') v = statusOrder[a.status] - statusOrder[b.status];
-                else if (currentSort === 'lla') v = (a.lla || 0) - (b.lla || 0);
-                else if (currentSort === 'label') v = (a.label || '').localeCompare(b.label || '');
+                else if (currentSort === 'lla') v = (a.xyz.x - b.xyz.x) || (a.xyz.y - b.xyz.y) || (a.xyz.z - b.xyz.z);
+                else if (currentSort === 'label') {
+                    const lA = (a.labels && a.labels[0]) || '';
+                    const lB = (b.labels && b.labels[0]) || '';
+                    v = lA.localeCompare(lB);
+                }
                 return asc ? v : (typeof v === 'number' ? -v : -v);
             });
 
@@ -1932,7 +2418,7 @@
                     // active, inactive, or indefinite
                     infoHtml = `
                         <div>last seen: <span class="time-val">${s.lastSeenStr}</span></div>
-                        <div class="lla-wrap">LABEL: <span>${s.label}</span></div>
+                        <div class="lla-wrap">LABELS: <span style="text-transform:none;">${s.labels && s.labels.length ? s.labels.join(', ') : 'N/A'}</span></div>
                         <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
                     `;
                 }
@@ -1941,6 +2427,7 @@
                     <div class="card ${cardClass}" ondblclick="showSensorDetails(${s.num})">
                         <div class="card-header">
                             <h3 class="sensor-name">Sensor ${s.sensorNum}</h3>
+                            ${s.alert ? `<div class="card-alert-badge" title="${s.alert}">⚠️</div>` : ''}
                             <div class="status-pill ${pillClass}">${pillIcon}${pillText}</div>
                         </div>
                         <div class="sensor-info">
@@ -1955,7 +2442,7 @@
 
         // ── Sort controls ─────────────────────────────────────────────
         const sortKeys = ['name', 'lastseen', 'status', 'lla', 'label'];
-        const sortLabels = { name: 'Sensor Name', lastseen: 'Last Seen', status: 'Activity', lla: 'Coordinates', label: 'Label' };
+        const sortLabels = { name: 'Sensor Name', lastseen: 'Last Seen', status: 'Activity', lla: 'LLA', label: 'Label' };
 
         function toggleSortPanel() {
             const btn = document.getElementById('sort-filter-btn');
@@ -2017,11 +2504,405 @@
             } else {
                 Object.keys(activeLabelFilters).forEach(k => {
                     activeLabelFilters[k] = false;
-                    const id = k === '' ? 'fl-empty' : 'fl-' + k;
-                    document.getElementById(id).checked = false;
                 });
+                renderLabelFilterUI();
             }
             renderGrid();
+        }
+
+        function renderLabelFilterUI() {
+            const container = document.getElementById('dynamic-label-filters');
+            if (!container) return;
+
+            let html = '';
+            // Sort keys by priority (empty/N/A first if needed)
+            const keys = Object.keys(activeLabelFilters).sort((a, b) => (a === '' ? 1 : b === '' ? -1 : a.localeCompare(b)));
+
+            keys.forEach(lbl => {
+                const id = lbl === '' ? 'fl-empty' : 'fl-' + lbl.replace(/\s+/g, '-');
+                const displayName = lbl === '' ? 'N/A' : lbl;
+                const checked = activeLabelFilters[lbl] ? 'checked' : '';
+
+                html += `
+                    <div class="filter-item" onclick="toggleLabelFilter('${lbl}')">
+                        <input type="checkbox" id="${id}" class="filter-checkbox" ${checked}
+                            onclick="event.stopPropagation(); toggleLabelFilter('${lbl}')">
+                        <span class="filter-label">${displayName}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // ── Labels Management Logic ──────────────────────────────────
+        function openLabelsModal() {
+            document.getElementById('settings-dropdown').classList.remove('open');
+            document.getElementById('labels-modal').classList.add('active');
+            document.getElementById('new-label-input').value = '';
+            document.getElementById('labels-sensor-search').value = '';
+            switchLabelsTab('assign');
+            populateLabelsSensorList();
+        }
+
+        function closeLabelsModal() {
+            document.getElementById('labels-modal').classList.remove('active');
+        }
+
+        function populateLabelsSensorList() {
+            const list = document.getElementById('labels-sensor-list');
+            list.innerHTML = '';
+            sensors.forEach(s => {
+                const item = document.createElement('div');
+                item.style.display = 'flex';
+                item.style.alignItems = 'center';
+                item.style.padding = '8px';
+                item.style.borderBottom = '1px solid #f3f4f6';
+                item.className = 'labels-sensor-item';
+                item.innerHTML = `
+                    <input type="checkbox" id="lbl-check-${s.num}" value="${s.num}" style="margin-right:10px;">
+                    <label for="lbl-check-${s.num}" style="font-size:0.9rem; cursor:pointer; flex:1;">
+                        Sensor ${s.sensorNum} <span style="font-size:0.75rem; color:#6b7280; margin-left:5px;">(${s.labels.join(', ') || 'no labels'})</span>
+                    </label>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function filterLabelsSensorList() {
+            const query = document.getElementById('labels-sensor-search').value.toLowerCase();
+            const items = document.querySelectorAll('.labels-sensor-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        function labelsModalSelectAll(bool) {
+            const checkboxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                if (cb.parentElement.style.display !== 'none') {
+                    cb.checked = bool;
+                }
+            });
+        }
+
+        function applyNewLabel() {
+            const labelName = document.getElementById('new-label-input').value.trim().toUpperCase();
+            if (!labelName) {
+                alert('Please enter a label name.');
+                return;
+            }
+
+            const checkedBoxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]:checked');
+            if (checkedBoxes.length === 0) {
+                alert('Please select at least one sensor.');
+                return;
+            }
+
+            checkedBoxes.forEach(cb => {
+                const sensorNum = parseInt(cb.value);
+                const sensor = sensors.find(s => s.num === sensorNum);
+                if (sensor) {
+                    if (!sensor.labels.includes(labelName)) {
+                        sensor.labels.push(labelName);
+                    }
+                }
+            });
+
+            // Ensure our global state knows about this label
+            if (!activeLabelFilters.hasOwnProperty(labelName)) {
+                activeLabelFilters[labelName] = true;
+            }
+
+            renderLabelFilterUI();
+            renderGrid();
+            closeLabelsModal();
+            alert(`Label "${labelName}" applied to ${checkedBoxes.length} sensors.`);
+        }
+
+        function removeNewLabel() {
+            const labelName = document.getElementById('new-label-input').value.trim().toUpperCase();
+            if (!labelName) {
+                alert('Please enter a label name to remove.');
+                return;
+            }
+
+            const checkedBoxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]:checked');
+            if (checkedBoxes.length === 0) {
+                alert('Please select at least one sensor.');
+                return;
+            }
+
+            let changeCount = 0;
+            checkedBoxes.forEach(cb => {
+                const sensorNum = parseInt(cb.value);
+                const sensor = sensors.find(s => s.num === sensorNum);
+                if (sensor && sensor.labels.includes(labelName)) {
+                    sensor.labels = sensor.labels.filter(l => l !== labelName);
+                    changeCount++;
+                }
+            });
+
+            if (changeCount === 0) {
+                alert(`The label "${labelName}" was not found on the selected sensors.`);
+                return;
+            }
+
+            cleanupUnusedLabels();
+            renderLabelFilterUI();
+            renderGrid();
+            closeLabelsModal();
+            alert(`Label "${labelName}" removed from ${changeCount} sensors.`);
+        }
+
+        // ── Alerts Management Logic ──────────────────────────────────
+        function openAlertsModal() {
+            document.getElementById('settings-dropdown').classList.remove('open');
+            document.getElementById('alerts-modal').classList.add('active');
+
+            // Clear inputs for fresh batch apply
+            document.getElementById('alert-temp-min').value = '';
+            document.getElementById('alert-temp-max').value = '';
+            document.getElementById('alert-rh-min').value = '';
+            document.getElementById('alert-rh-max').value = '';
+            document.getElementById('alert-light-min').value = '';
+            document.getElementById('alert-light-max').value = '';
+            document.getElementById('alerts-sensor-search').value = '';
+
+            switchAlertsTab('assign');
+            populateAlertsSensorList();
+        }
+
+        function closeAlertsModal() {
+            document.getElementById('alerts-modal').classList.remove('active');
+        }
+
+        function populateAlertsSensorList() {
+            const list = document.getElementById('alerts-sensor-list');
+            if (!list) return;
+            list.innerHTML = '';
+            sensors.forEach(s => {
+                const item = document.createElement('div');
+                item.style.display = 'flex';
+                item.style.alignItems = 'center';
+                item.style.padding = '6px 8px';
+                item.style.borderBottom = '1px solid #f3f4f6';
+                item.className = 'alerts-sensor-item';
+
+                let hint = '';
+                const h = s.thresholds;
+                if (h && (h.tempMin !== null || h.tempMax !== null || h.rhMin !== null || h.rhMax !== null || h.lightMin !== null || h.lightMax !== null)) {
+                    hint = '<span style="font-size:0.7rem; color:#10b981; margin-left:5px;">(has rules)</span>';
+                }
+
+                item.innerHTML = `
+                    <input type="checkbox" id="alt-check-${s.num}" value="${s.num}" style="margin-right:10px;">
+                    <label for="alt-check-${s.num}" style="font-size:0.85rem; cursor:pointer; flex:1;">
+                        Sensor ${s.sensorNum} ${hint}
+                    </label>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function filterAlertsSensorList() {
+            const query = document.getElementById('alerts-sensor-search').value.toLowerCase();
+            const items = document.querySelectorAll('.alerts-sensor-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? 'flex' : 'none';
+            });
+        }
+
+        function alertsModalSelectAll(bool) {
+            const checkboxes = document.querySelectorAll('#alerts-sensor-list input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                if (cb.parentElement.style.display !== 'none') {
+                    cb.checked = bool;
+                }
+            });
+        }
+
+        // ── Modal Tab Switching & Summaries ──────────────────────────
+        function switchLabelsTab(tab) {
+            const assignBtn = document.getElementById('btn-labels-assign');
+            const viewBtn = document.getElementById('btn-labels-view');
+            const assignView = document.getElementById('labels-assign-view');
+            const summaryView = document.getElementById('labels-summary-view');
+
+            if (tab === 'assign') {
+                assignBtn.classList.add('active');
+                viewBtn.classList.remove('active');
+                assignView.classList.add('active');
+                summaryView.classList.remove('active');
+            } else {
+                assignBtn.classList.remove('active');
+                viewBtn.classList.add('active');
+                assignView.classList.remove('active');
+                summaryView.classList.add('active');
+                renderLabelsSummary();
+            }
+        }
+
+        function switchAlertsTab(tab) {
+            const assignBtn = document.getElementById('btn-alerts-assign');
+            const viewBtn = document.getElementById('btn-alerts-view');
+            const assignView = document.getElementById('alerts-assign-view');
+            const summaryView = document.getElementById('alerts-summary-view');
+
+            if (tab === 'assign') {
+                assignBtn.classList.add('active');
+                viewBtn.classList.remove('active');
+                assignView.classList.add('active');
+                summaryView.classList.remove('active');
+            } else {
+                assignBtn.classList.remove('active');
+                viewBtn.classList.add('active');
+                assignView.classList.remove('active');
+                summaryView.classList.add('active');
+                renderAlertsSummary();
+            }
+        }
+
+        function renderLabelsSummary() {
+            const list = document.getElementById('labels-summary-list');
+            const searchInput = document.getElementById('labels-summary-search');
+            if (!list || !searchInput) return;
+            const query = searchInput.value.toLowerCase();
+            list.innerHTML = '';
+
+            sensors.forEach(s => {
+                const labelStr = s.labels.join(', ');
+                if (s.sensorNum.toLowerCase().includes(query) || labelStr.toLowerCase().includes(query)) {
+                    const row = document.createElement('div');
+                    row.style.display = 'flex';
+                    row.style.justifyContent = 'space-between';
+                    row.style.alignItems = 'center';
+                    row.style.padding = '10px 12px';
+                    row.style.background = '#ffffff';
+                    row.style.border = '1px solid #e5e7eb';
+                    row.style.borderRadius = '8px';
+
+                    let labelPills = s.labels.map(l => `<span style="background:#eef5f1; color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #d1e2da;">${l}</span>`).join(' ');
+                    if (s.labels.length === 0) labelPills = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No labels</span>';
+
+                    row.innerHTML = `
+                        <div style="font-weight:700; color:#374151; font-size:0.85rem;">Sensor ${s.sensorNum}</div>
+                        <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; max-width:60%;">${labelPills}</div>
+                    `;
+                    list.appendChild(row);
+                }
+            });
+        }
+
+        function renderAlertsSummary() {
+            const list = document.getElementById('alerts-summary-list');
+            const searchInput = document.getElementById('alerts-summary-search');
+            if (!list || !searchInput) return;
+            const query = searchInput.value.toLowerCase();
+            list.innerHTML = '';
+
+            sensors.forEach(s => {
+                const h = s.thresholds;
+                let rules = [];
+                if (h.tempMin !== null) rules.push(`T < ${h.tempMin}°`);
+                if (h.tempMax !== null) rules.push(`T > ${h.tempMax}°`);
+                if (h.rhMin !== null) rules.push(`RH < ${h.rhMin}%`);
+                if (h.rhMax !== null) rules.push(`RH > ${h.rhMax}%`);
+                if (h.lightMin !== null) rules.push(`L < ${h.lightMin}`);
+                if (h.lightMax !== null) rules.push(`L > ${h.lightMax}`);
+
+                const ruleStr = rules.join(', ');
+                if (s.sensorNum.toLowerCase().includes(query) || ruleStr.toLowerCase().includes(query)) {
+                    const row = document.createElement('div');
+                    row.style.display = 'flex';
+                    row.style.justifyContent = 'space-between';
+                    row.style.alignItems = 'center';
+                    row.style.padding = '10px 12px';
+                    row.style.background = '#ffffff';
+                    row.style.border = '1px solid #e5e7eb';
+                    row.style.borderRadius = '8px';
+
+                    let ruleDisplay = rules.map(r => `<span style="background:#fff7ed; color:#ea580c; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #ffedd5;">${r}</span>`).join(' ');
+                    if (rules.length === 0) ruleDisplay = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No active alerts</span>';
+
+                    row.innerHTML = `
+                        <div style="font-weight:700; color:#374151; font-size:0.85rem;">Sensor ${s.sensorNum}</div>
+                        <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; max-width:65%;">${ruleDisplay}</div>
+                    `;
+                    list.appendChild(row);
+                }
+            });
+        }
+
+        function saveAlertSettings() {
+            const tMin = document.getElementById('alert-temp-min').value !== '' ? parseFloat(document.getElementById('alert-temp-min').value) : null;
+            const tMax = document.getElementById('alert-temp-max').value !== '' ? parseFloat(document.getElementById('alert-temp-max').value) : null;
+            const rMin = document.getElementById('alert-rh-min').value !== '' ? parseFloat(document.getElementById('alert-rh-min').value) : null;
+            const rMax = document.getElementById('alert-rh-max').value !== '' ? parseFloat(document.getElementById('alert-rh-max').value) : null;
+            const lMin = document.getElementById('alert-light-min').value !== '' ? parseFloat(document.getElementById('alert-light-min').value) : null;
+            const lMax = document.getElementById('alert-light-max').value !== '' ? parseFloat(document.getElementById('alert-light-max').value) : null;
+
+            const checkedBoxes = document.querySelectorAll('#alerts-sensor-list input[type="checkbox"]:checked');
+            if (checkedBoxes.length === 0) {
+                alert('Please select at least one sensor to apply these thresholds to.');
+                return;
+            }
+
+            checkedBoxes.forEach(cb => {
+                const sensorNum = parseInt(cb.value);
+                const sensor = sensors.find(s => s.num === sensorNum);
+                if (sensor) {
+                    sensor.thresholds = {
+                        tempMin: tMin, tempMax: tMax,
+                        rhMin: rMin, rhMax: rMax,
+                        lightMin: lMin, lightMax: lMax
+                    };
+                }
+            });
+
+            renderGrid();
+            closeAlertsModal();
+            alert(`Thresholds applied to ${checkedBoxes.length} sensors.`);
+        }
+
+        function checkAllSensorAlerts() {
+            sensors.forEach(s => {
+                if (s.status === 'replaced') {
+                    s.alert = null;
+                    return;
+                }
+
+                let activeAlerts = [];
+                const t = parseFloat(s.temp);
+                const r = parseFloat(s.rh);
+                const l = parseFloat(s.light);
+                const h = s.thresholds;
+
+                if (!h) return;
+
+                if (h.tempMin !== null && t < h.tempMin) activeAlerts.push(`Temp < ${h.tempMin}°`);
+                if (h.tempMax !== null && t > h.tempMax) activeAlerts.push(`Temp > ${h.tempMax}°`);
+
+                if (h.rhMin !== null && r < h.rhMin) activeAlerts.push(`RH < ${h.rhMin}%`);
+                if (h.rhMax !== null && r > h.rhMax) activeAlerts.push(`RH > ${h.rhMax}%`);
+
+                if (h.lightMin !== null && l < h.lightMin) activeAlerts.push(`Light < ${h.lightMin} Lux`);
+                if (h.lightMax !== null && l > h.lightMax) activeAlerts.push(`Light > ${h.lightMax} Lux`);
+
+                s.alert = activeAlerts.length > 0 ? activeAlerts.join(', ') : null;
+            });
+        }
+
+        function cleanupUnusedLabels() {
+            const allUsedLabels = new Set();
+            sensors.forEach(s => s.labels.forEach(l => allUsedLabels.add(l)));
+            const defaults = ['NORTH', 'SOUTH', 'EAST', 'WEST', 'CENTER', ''];
+            Object.keys(activeLabelFilters).forEach(lbl => {
+                if (!allUsedLabels.has(lbl) && !defaults.includes(lbl)) {
+                    delete activeLabelFilters[lbl];
+                }
+            });
         }
 
         // Close dropdowns when clicking outside
@@ -2236,6 +3117,89 @@
             isEditMode = false;
             updateModalUI();
             renderGrid(); // Refresh grid to show new name if changed
+        }
+
+        // ── Map Visualization Logic ──────────────────────────────────
+        let currentMapView = '3d';
+
+        function openMapModal() {
+            document.getElementById('settings-dropdown').classList.remove('open');
+            document.getElementById('map-modal').classList.add('active');
+            renderMap();
+        }
+
+        function closeMapModal() {
+            document.getElementById('map-modal').classList.remove('active');
+        }
+
+        function setMapView(type) {
+            currentMapView = type;
+            const grid = document.getElementById('map-grid');
+            const btn3d = document.getElementById('btn-map-3d');
+            const btn2d = document.getElementById('btn-map-2d');
+
+            if (type === '3d') {
+                grid.classList.add('view-3d');
+                grid.classList.remove('view-2d');
+                btn3d.classList.add('active');
+                btn2d.classList.remove('active');
+            } else {
+                grid.classList.add('view-2d');
+                grid.classList.remove('view-3d');
+                btn2d.classList.add('active');
+                btn3d.classList.remove('active');
+            }
+            renderMap();
+        }
+
+        function renderMap() {
+            const grid = document.getElementById('map-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            // Add Base Plane (Z=0)
+            const basePlane = document.createElement('div');
+            basePlane.className = 'grid-plane';
+            basePlane.style.transform = 'translateZ(0)';
+            grid.appendChild(basePlane);
+
+            // Add sensors
+            sensors.forEach(s => {
+                const dot = document.createElement('div');
+                dot.className = 'sensor-point';
+                dot.setAttribute('data-label', `Sensor ${s.sensorNum} (${s.xyz.x}, ${s.xyz.y}, ${s.xyz.z})`);
+
+                // Position logic (450px grid for 0-14 range)
+                const cellSize = 450 / 15;
+                const left = s.xyz.x * cellSize + (cellSize / 2) - 7;
+                const top = s.xyz.y * cellSize + (cellSize / 2) - 7;
+                const zHeight = s.xyz.z * (cellSize * 1.5); // Emphasize Z a bit more
+
+                dot.style.left = `${left}px`;
+                dot.style.top = `${top}px`;
+
+                // Color based on status
+                let color = '#10b981'; // Active
+                if (s.alert) color = '#ef4444';
+                else if (s.status === 'inactive' || s.status === 'indefinite') color = '#94a3b8';
+                else if (s.status === 'replaced') color = '#6366f1';
+
+                dot.style.background = color;
+                dot.style.boxShadow = `0 0 10px ${color}80`;
+
+                if (currentMapView === '3d') {
+                    dot.style.transform = `translateZ(${zHeight}px)`;
+                } else {
+                    dot.style.transform = `translateZ(0px)`;
+                }
+
+                dot.onclick = () => {
+                    closeMapModal();
+                    showSensorDetails(s.num);
+                };
+
+                grid.appendChild(dot);
+            });
         }
 
         function closeModal(e) {
