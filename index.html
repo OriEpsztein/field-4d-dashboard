@@ -172,7 +172,7 @@
             justify-content: center;
             padding: 40px 20px;
             gap: 15px;
-            background-image: url('pictures/Picture1.png');
+            background-image: url('Picture1.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1252,7 +1252,10 @@
                         <span class="sort-option-left">
                             Last Seen
                             <span class="info-badge">!</span>
-                            <div class="info-popup">Updated at the moment you press Sort.
+                            <div class="info-popup">Updated at the moment you press Sort.<br>Sensors transmit data every
+                                3 min — values shown reflect the last recorded time at sort.</div>
+                        </span>
+                        <span class="arrow" id="arrow-lastseen">↑</span>
                     </button>
                     <button class="sort-option" id="sort-status" onclick="setSort('status')">
                         <span class="sort-option-left">Activity</span>
@@ -1366,7 +1369,7 @@
             </button>
         </div>
         <div class="header-center" style="display:flex;align-items:center;justify-content:center;gap:15px;">
-            <img src="pictures/logo.png" alt="Field 4D" style="height:48px;">
+            <img src="logo.png" alt="Field 4D" style="height:48px;">
             <div id="header-meta"
                 style="text-align:left; font-weight:500; font-size:0.95rem; color:#ffffff; display:flex; align-items:center; gap:8px;">
                 <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px;">MAC: <span
@@ -1404,7 +1407,7 @@
     <!-- ======================== HOME PAGE ======================== -->
     <div id="home-page" class="active">
         <div class="home-logo">
-            <img src="pictures/logo.png" alt="Field 4D Logo">
+            <img src="logo.png" alt="Field 4D Logo">
         </div>
 
         <div class="home-form">
@@ -1443,7 +1446,7 @@
                         <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor">
                             <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
                         </svg>
-                        START NEW
+                        START NEW EXP
                     </button>
                 </div>
             </div>
@@ -1481,10 +1484,10 @@
     </div>
 
     <!-- ======================== EXP MODAL ======================== -->
-    <div id="exp-modal" class="modal-overlay">
-        <div class="modal" style="max-width: 450px;">
+    <div id="exp-modal" class="modal-overlay" onclick="closeExpModal()">
+        <div class="modal-content" style="max-width: 520px;" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <h2 class="modal-title" style="margin:0; font-size:1.4rem;">Experiment management </h2>
+                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Experiment Management</h2>
                 <div class="modal-actions">
                     <button class="icon-btn close-btn" onclick="closeExpModal()" aria-label="Close">
                         <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
@@ -1506,23 +1509,30 @@
 
                 <!-- View 1: Start Step 1 -->
                 <div id="exp-view-start-1" class="exp-view">
-                    <div>
-                        <label class="detail-label" style="display:block; margin-bottom:5px;">Name of EXP</label>
-                        <input type="text" id="exp-start-name" class="modal-input" placeholder="e.g. Field_Test_02">
+                    <div style="margin-bottom:20px">
+                        <label
+                            style="display:block; margin-bottom:8px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">Name
+                            of Experiment</label>
+                        <input type="text" id="exp-start-name" class="modal-input"
+                            style="width:100%; font-size:1.1rem; padding:14px 16px; border-radius:10px; border:1.5px solid #b8d1c8;"
+                            placeholder="e.g. Field_Test_02">
                     </div>
-                    <div>
-                        <label class="detail-label" style="display:block; margin-bottom:5px;">Location</label>
-                        <input type="text" id="exp-start-loc" class="modal-input" placeholder="e.g. GREENHOUSE">
+                    <div style="margin-bottom:24px">
+                        <label
+                            style="display:block; margin-bottom:8px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">Location</label>
+                        <input type="text" id="exp-start-loc" class="modal-input"
+                            style="width:100%; font-size:1.1rem; padding:14px 16px; border-radius:10px; border:1.5px solid #b8d1c8;"
+                            placeholder="e.g. GREENHOUSE">
                     </div>
-                    <div id="exp-start-btns-home"
-                        style="display:none; flex-direction:column; gap:8px; margin-top:10px;">
-                        <button class="edit-btn" style="width:100%; justify-content:center; background:#82c3ab"
-                            onclick="submitExpStartHome()">CONTINUE TO DASHBOARD</button>
+                    <div id="exp-start-btns-home" style="display:none; flex-direction:column; gap:8px;">
+                        <button class="edit-btn saving"
+                            style="width:100%; justify-content:center; font-size:1rem; padding:14px; border-radius:10px; background:#82c3ab; border-color:#82c3ab;"
+                            onclick="submitExpStartHome()">Continue to Dashboard →</button>
                     </div>
-                    <div id="exp-start-btns-standard"
-                        style="display:flex; flex-direction:column; gap:8px; margin-top:10px;">
-                        <button class="edit-btn" style="width:100%; justify-content:center"
-                            onclick="submitExpStartStep1()">OK (Proceed to Verification)</button>
+                    <div id="exp-start-btns-standard" style="display:flex; flex-direction:column; gap:8px;">
+                        <button class="edit-btn saving"
+                            style="width:100%; justify-content:center; font-size:1rem; padding:14px; border-radius:10px;"
+                            onclick="submitExpStartStep1()">OK — Proceed to Verification →</button>
                     </div>
                 </div>
 
@@ -1780,7 +1790,7 @@
         let sensors = [];
         let gridBuilt = false;
         let currentSort = 'name';
-        let sortAsc = { name: true, lastseen: false, status: true, lla: true };
+        let sortAsc = { name: true, lastseen: false, status: true, lla: true, label: true };
 
         function buildGrid() {
             if (gridBuilt) return;
@@ -1900,7 +1910,7 @@
                 else if (currentSort === 'lastseen') v = a.lastSeenDate - b.lastSeenDate;
                 else if (currentSort === 'status') v = statusOrder[a.status] - statusOrder[b.status];
                 else if (currentSort === 'lla') v = (a.lla || 0) - (b.lla || 0);
-                else if (currentSort === 'label') v = a.label.localeCompare(b.label);
+                else if (currentSort === 'label') v = (a.label || '').localeCompare(b.label || '');
                 return asc ? v : (typeof v === 'number' ? -v : -v);
             });
 
@@ -2291,8 +2301,8 @@
 
             // reset fields
             if (viewId === 'start-1') {
-                document.getElementById('exp-start-name').value = '';
-                document.getElementById('exp-start-loc').value = '';
+                document.getElementById('exp-start-name').value = window.currentExp || '';
+                document.getElementById('exp-start-loc').value = document.getElementById('header-location')?.innerText || '';
 
                 // Show/hide home vs standard buttons
                 const isHome = homePage.classList.contains('active');
