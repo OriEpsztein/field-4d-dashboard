@@ -123,9 +123,9 @@
             }
 
             50% {
-                border-color: #f59e0b;
-                box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
-                background: rgba(245, 158, 11, 0.2);
+                border-color: #7e08ec;
+                box-shadow: 0 0 35px rgba(124, 9, 232, 0.932);
+                background: rgba(168, 85, 247, 0.25);
             }
 
             100% {
@@ -136,8 +136,8 @@
         }
 
         .card.pinging {
-            animation: ping-blink 0.6s ease-in-out 2 !important;
-            border-color: #f59e0b !important;
+            animation: ping-blink 2s ease-in-out 2 !important;
+            border-color: #7e08ec !important;
             z-index: 10;
             position: relative;
         }
@@ -486,18 +486,15 @@
         }
 
         /* ── Sort Toolbar ── */
-        /* Wrapper on the Filter icon button */
         .sort-btn-wrap {
             position: relative;
         }
 
-        /* The filter icon gets a highlight when dropdown is open */
         .sort-btn-wrap .icon-btn.sort-open {
             background-color: #82c3ab;
             color: #333f48;
         }
 
-        /* Dropdown panel */
         .sort-dropdown {
             display: none;
             position: absolute;
@@ -529,7 +526,6 @@
             }
         }
 
-        /* Panel header */
         .sort-dropdown-title {
             font-size: 0.7rem;
             font-weight: 800;
@@ -714,7 +710,6 @@
             background: #f0f7f4;
         }
 
-        /* Standard Checkbox Reset */
         .filter-checkbox {
             width: 18px;
             height: 18px;
@@ -1415,7 +1410,6 @@
                             d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z" />
                     </svg>
                 </button>
-                <!-- Sort dropdown anchored to this button -->
                 <div class="sort-dropdown" id="sort-dropdown">
                     <div class="sort-dropdown-title">Sort by</div>
                     <button class="sort-option active" id="sort-name" onclick="setSort('name')">
@@ -1464,7 +1458,6 @@
                         <button class="filter-tab" id="ftab-label" onclick="switchFilterTab('label')">Label</button>
                     </div>
 
-                    <!-- Activity Panel -->
                     <div class="filter-panel active" id="fpanel-activity">
                         <div class="filter-item" onclick="toggleFilter('active')">
                             <input type="checkbox" id="f-active" class="filter-checkbox" checked
@@ -1492,10 +1485,8 @@
                         </div>
                     </div>
 
-                    <!-- Label Panel -->
                     <div class="filter-panel" id="fpanel-label">
                         <div id="dynamic-label-filters">
-                            <!-- Populated dynamically via JS -->
                         </div>
                         <div class="filter-actions">
                             <button class="filter-action-btn" onclick="filterSelectAll('label')">Select All</button>
@@ -1555,7 +1546,6 @@
         </div>
     </header>
 
-    <!-- ======================== HOME PAGE ======================== -->
     <div id="home-page" class="active">
         <div class="home-logo">
             <img src="pictures/logo.png" alt="Field 4D Logo">
@@ -1607,14 +1597,12 @@
         </div>
     </div>
 
-    <!-- ======================== DASHBOARD PAGE ======================== -->
     <div id="dashboard-page">
         <main>
             <div class="grid-container" id="sensor-grid"></div>
         </main>
     </div>
 
-    <!-- ======================== MODAL ======================== -->
     <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -1629,12 +1617,10 @@
                 </div>
             </div>
             <div class="modal-grid" id="modal-details">
-                <!-- Data filled by JS -->
             </div>
         </div>
     </div>
 
-    <!-- ======================== EXP MODAL ======================== -->
     <div id="exp-modal" class="modal-overlay" onclick="closeExpModal()">
         <div class="modal-content" style="max-width: 520px;" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -1650,7 +1636,6 @@
             </div>
             <div class="modal-body" style="padding-top: 20px;">
 
-                <!-- View 0: Select Action -->
                 <div id="exp-view-select" class="exp-view active">
                     <h2>What would you like to do?</h2>
                     <button class="exp-btn-large" onclick="goToExpView('start-1')">START NEW EXP</button>
@@ -1658,7 +1643,6 @@
                         onclick="goToExpView('end-1')">END CURRENT EXP</button>
                 </div>
 
-                <!-- View 1: Start Step 1 -->
                 <div id="exp-view-start-1" class="exp-view">
                     <div style="margin-bottom:20px">
                         <label
@@ -1687,7 +1671,6 @@
                     </div>
                 </div>
 
-                <!-- View 2: Start Step 2 -->
                 <div id="exp-view-start-2" class="exp-view">
                     <h2>Verify Sensors</h2>
                     <div style="text-align:center; font-weight:700; color:#4a555e; font-size:1.1rem"
@@ -1715,7 +1698,6 @@
                     </div>
                 </div>
 
-                <!-- View 3: End Step 1 -->
                 <div id="exp-view-end-1" class="exp-view">
                     <h2>End Current Experiment</h2>
                     <p style="text-align:center; color:#606f7b; font-size:0.9rem; margin:0 0 15px 0;">To end the
@@ -1739,10 +1721,8 @@
         </div>
     </div>
 
-    <!-- ======================== SWITCH MODAL ======================== -->
-    <!-- ======================== ALERTS MODAL ======================== -->
     <div id="alerts-modal" class="modal-overlay" onclick="closeAlertsModal()">
-        <div class="modal-content" style="max-width: 500px;" onclick="event.stopPropagation()">
+        <div class="modal-content" style="max-width: 95%; width: 95vw;" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Alerts Management</h2>
                 <div class="modal-actions">
@@ -1762,13 +1742,11 @@
                         All</button>
                 </div>
 
-                <!-- ASSIGN VIEW -->
                 <div id="alerts-assign-view" class="modal-view-panel active">
                     <div style="margin-bottom:20px">
                         <label
                             style="display:block; margin-bottom:12px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">1.
                             Set Thresholds</label>
-                        <!-- Temp -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
                             <h3
@@ -1792,7 +1770,6 @@
                             </div>
                         </div>
 
-                        <!-- RH -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
                             <h3
@@ -1816,7 +1793,6 @@
                             </div>
                         </div>
 
-                        <!-- Light -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
                             <h3
@@ -1859,8 +1835,7 @@
                             </div>
                         </div>
                         <div id="alerts-sensor-list"
-                            style="max-height: 150px; overflow-y: auto; background: #ffffff; border: 1px solid #d1e2da; border-radius: 8px; padding: 5px; display:flex; flex-direction:column;">
-                            <!-- sensors list populated here -->
+                            style="max-height: 220px; overflow-y: auto; background: #f0f4f2; border: 1px solid #d1e2da; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;">
                         </div>
                     </div>
 
@@ -1871,7 +1846,6 @@
                     </div>
                 </div>
 
-                <!-- VIEW ALL VIEW -->
                 <div id="alerts-summary-view" class="modal-view-panel">
                     <div style="margin-bottom:15px;">
                         <input type="text" id="alerts-summary-search" placeholder="Search sensor or rule..."
@@ -1880,8 +1854,7 @@
                             onkeyup="renderAlertsSummary()">
                     </div>
                     <div id="alerts-summary-list"
-                        style="max-height: 480px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display:flex; flex-direction:column; gap:8px;">
-                        <!-- Populate via JS -->
+                        style="max-height: 480px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;">
                     </div>
                 </div>
             </div>
@@ -1890,7 +1863,6 @@
         </div>
     </div>
 
-    <!-- ======================== MAP MODAL ======================== -->
     <div id="map-modal" class="modal-overlay" onclick="closeMapModal()">
         <div class="modal-content" style="max-width: 900px; width: 95vw;" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -1918,10 +1890,8 @@
             <div class="modal-body" style="padding: 20px;">
                 <div class="map-container" id="map-canvas-container">
                     <div id="map-grid" class="map-grid-3d view-3d">
-                        <!-- Planes and points here -->
                     </div>
                 </div>
-                <!-- Legend -->
                 <div
                     style="margin-top:20px; display:flex; gap:20px; justify-content:center; align-items:center; flex-wrap:wrap;">
                     <div style="display:flex; align-items:center; gap:8px;">
@@ -1945,9 +1915,8 @@
         </div>
     </div>
 
-    <!-- ======================== LABELS MODAL ======================== -->
     <div id="labels-modal" class="modal-overlay" onclick="closeLabelsModal()">
-        <div class="modal-content" style="max-width: 550px;" onclick="event.stopPropagation()">
+        <div class="modal-content" style="max-width: 95%; width: 95vw;" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Labels Management</h2>
                 <div class="modal-actions">
@@ -1967,7 +1936,6 @@
                         All</button>
                 </div>
 
-                <!-- ASSIGN VIEW -->
                 <div id="labels-assign-view" class="modal-view-panel active">
                     <div style="margin-bottom:20px">
                         <label
@@ -1997,8 +1965,7 @@
                     </div>
 
                     <div id="labels-sensor-list"
-                        style="max-height: 250px; overflow-y: auto; background: #ffffff; border: 1px solid #d1e2da; border-radius: 8px; padding: 5px; display:flex; flex-direction:column;">
-                        <!-- sensors list populated here -->
+                        style="max-height: 250px; overflow-y: auto; background: #f0f4f2; border: 1px solid #d1e2da; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;">
                     </div>
 
                     <div style="margin-top:25px; display:flex; gap:12px;">
@@ -2011,7 +1978,6 @@
                     </div>
                 </div>
 
-                <!-- VIEW ALL VIEW -->
                 <div id="labels-summary-view" class="modal-view-panel">
                     <div style="margin-bottom:15px;">
                         <input type="text" id="labels-summary-search" placeholder="Search sensor or label..."
@@ -2020,8 +1986,7 @@
                             onkeyup="renderLabelsSummary()">
                     </div>
                     <div id="labels-summary-list"
-                        style="max-height: 400px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display:flex; flex-direction:column; gap:8px;">
-                        <!-- Populate via JS -->
+                        style="max-height: 400px; overflow-y: auto; background: #f9fafb; border: 1px solid #d1e2da; border-radius: 10px; padding: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;">
                     </div>
                 </div>
             </div>
@@ -2029,7 +1994,6 @@
         </div>
     </div>
 
-    <!-- ======================== SWITCH MODAL ======================== -->
     <div id="switch-modal" class="modal-overlay" onclick="closeSwitchModal()">
         <div class="modal-content" style="max-width: 800px;" onclick="event.stopPropagation()">
             <div class="modal-header">
@@ -2046,7 +2010,6 @@
             <div class="modal-body" style="padding-top: 15px;">
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; position:relative;">
 
-                    <!-- Left: Current -->
                     <div id="switch-old-unit-card"
                         style="background:#f8faf9; padding:20px; border-radius:12px; border:1px solid #d1e2da; transition: all 0.3s ease-in-out;">
                         <h3
@@ -2073,7 +2036,6 @@
                             onclick="pingSpecificSensor('old')">Ping Current</button>
                     </div>
 
-                    <!-- Right: New -->
                     <div id="switch-new-unit-card"
                         style="background:#fff9f0; padding:20px; border-radius:12px; border:1px solid #fce8cc; transition: all 0.3s ease-in-out;">
                         <h3
@@ -2112,7 +2074,6 @@
         </div>
     </div>
 
-    <!-- MAIN SCRIPT -->
     <script>
         // ── Page navigation ──────────────────────────────────────────
         const homePage = document.getElementById('home-page');
@@ -2131,10 +2092,8 @@
 
         let activeLabelFilters = {
             'NORTH': true,
-            'SOUTH': true,
-            'EAST': true,
-            'WEST': true,
-            'CENTER': true,
+            'SAND': true,
+            'ABA': true,
             '': true
         };
 
@@ -2245,6 +2204,8 @@
                 let num = i + 1;
                 let sensorNum = num.toString().padStart(3, '0');
 
+                let nod = String.fromCharCode(65 + (i % 9)); // Node A, B, C...
+
                 // Mix of Active, Inactive, Indefinite
                 let status = 'active';
                 if (i === 3 || i === 7 || i === 11) status = 'inactive';
@@ -2264,7 +2225,15 @@
                 let currentLla = (1e9 + i * 1e7 + 777);
                 mainLlas[num] = currentLla; // Store for linkage
 
-                let currentLabels = ['NORTH', 'SOUTH', 'EAST', 'WEST', 'CENTER'][Math.floor(Math.random() * 5)];
+                let pool = ['NORTH', 'SAND', 'ABA'];
+                let count = Math.floor(Math.random() * 3); // 0, 1, or 2 labels
+                let selected = [];
+                let poolCopy = [...pool];
+                for (let j = 0; j < count; j++) {
+                    let idx = Math.floor(Math.random() * poolCopy.length);
+                    selected.push(poolCopy[idx]);
+                    poolCopy.splice(idx, 1);
+                }
 
                 sensors.push({
                     num,
@@ -2287,7 +2256,7 @@
                     battery: 2900,
                     rh: Math.floor(30 + Math.random() * 40),
                     alert: null,
-                    labels: [currentLabels],
+                    labels: [...selected],
                     thresholds: {
                         tempMin: null, tempMax: null,
                         rhMin: null, rhMax: null,
@@ -2550,18 +2519,27 @@
 
         function populateLabelsSensorList() {
             const list = document.getElementById('labels-sensor-list');
+            if (!list) return;
             list.innerHTML = '';
+
             sensors.forEach(s => {
+                // SAFEGUARD: Ensure labels is an array so .join() doesn't crash the app
+                const safeLabels = Array.isArray(s.labels) ? s.labels : [];
+
                 const item = document.createElement('div');
                 item.style.display = 'flex';
                 item.style.alignItems = 'center';
-                item.style.padding = '8px';
-                item.style.borderBottom = '1px solid #f3f4f6';
+                item.style.padding = '8px 10px';
+                item.style.background = '#ffffff';
+                item.style.border = '1px solid #d1e2da';
+                item.style.borderRadius = '6px';
+                item.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
                 item.className = 'labels-sensor-item';
+
                 item.innerHTML = `
                     <input type="checkbox" id="lbl-check-${s.num}" value="${s.num}" style="margin-right:10px;">
                     <label for="lbl-check-${s.num}" style="font-size:0.9rem; cursor:pointer; flex:1;">
-                        Sensor ${s.sensorNum} <span style="font-size:0.75rem; color:#6b7280; margin-left:5px;">(${s.labels.join(', ') || 'no labels'})</span>
+                        Sensor ${s.sensorNum} <span style="font-size:0.75rem; color:#6b7280; margin-left:5px;">(${safeLabels.join(', ') || 'no labels'})</span>
                     </label>
                 `;
                 list.appendChild(item);
@@ -2685,8 +2663,11 @@
                 const item = document.createElement('div');
                 item.style.display = 'flex';
                 item.style.alignItems = 'center';
-                item.style.padding = '6px 8px';
-                item.style.borderBottom = '1px solid #f3f4f6';
+                item.style.padding = '8px 10px';
+                item.style.background = '#ffffff';
+                item.style.border = '1px solid #d1e2da';
+                item.style.borderRadius = '6px';
+                item.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
                 item.className = 'alerts-sensor-item';
 
                 let hint = '';
@@ -2768,29 +2749,40 @@
             const list = document.getElementById('labels-summary-list');
             const searchInput = document.getElementById('labels-summary-search');
             if (!list || !searchInput) return;
+
             const query = searchInput.value.toLowerCase();
             list.innerHTML = '';
 
             sensors.forEach(s => {
-                const labelStr = s.labels.join(', ');
-                if (s.sensorNum.toLowerCase().includes(query) || labelStr.toLowerCase().includes(query)) {
-                    const row = document.createElement('div');
-                    row.style.display = 'flex';
-                    row.style.justifyContent = 'space-between';
-                    row.style.alignItems = 'center';
-                    row.style.padding = '10px 12px';
-                    row.style.background = '#ffffff';
-                    row.style.border = '1px solid #e5e7eb';
-                    row.style.borderRadius = '8px';
+                // SAFEGUARD: Prevent crash if data is missing
+                const safeLabels = Array.isArray(s.labels) ? s.labels : [];
+                const labelStr = safeLabels.join(', ').toLowerCase();
+                const sensorNumStr = s.sensorNum ? String(s.sensorNum).toLowerCase() : '';
 
-                    let labelPills = s.labels.map(l => `<span style="background:#eef5f1; color:#10b981; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #d1e2da;">${l}</span>`).join(' ');
-                    if (s.labels.length === 0) labelPills = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No labels</span>';
+                if (sensorNumStr.includes(query) || labelStr.includes(query)) {
+                    const card = document.createElement('div');
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    card.style.gap = '8px';
+                    card.style.padding = '12px';
+                    card.style.background = '#ffffff';
+                    card.style.border = '1px solid #d1e2da';
+                    card.style.borderRadius = '8px';
+                    card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
 
-                    row.innerHTML = `
-                        <div style="font-weight:700; color:#374151; font-size:0.85rem;">Sensor ${s.sensorNum}</div>
-                        <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; max-width:60%;">${labelPills}</div>
+                    let labelPills = safeLabels.map(l =>
+                        `<span style="background:#eef5f1; color:#10b981; padding:3px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #d1e2da; display:inline-block;">${l}</span>`
+                    ).join(' ');
+
+                    if (safeLabels.length === 0) {
+                        labelPills = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No labels</span>';
+                    }
+
+                    card.innerHTML = `
+                        <div style="font-weight:800; color:#333f48; font-size:0.9rem;">Sensor ${s.sensorNum}</div>
+                        <div style="display:flex; gap:6px; flex-wrap:wrap;">${labelPills}</div>
                     `;
-                    list.appendChild(row);
+                    list.appendChild(card);
                 }
             });
         }
@@ -2799,38 +2791,49 @@
             const list = document.getElementById('alerts-summary-list');
             const searchInput = document.getElementById('alerts-summary-search');
             if (!list || !searchInput) return;
+
             const query = searchInput.value.toLowerCase();
             list.innerHTML = '';
 
             sensors.forEach(s => {
-                const h = s.thresholds;
+                // SAFEGUARD: Ensure thresholds object exists
+                const h = s.thresholds || {};
                 let rules = [];
-                if (h.tempMin !== null) rules.push(`T < ${h.tempMin}°`);
-                if (h.tempMax !== null) rules.push(`T > ${h.tempMax}°`);
-                if (h.rhMin !== null) rules.push(`RH < ${h.rhMin}%`);
-                if (h.rhMax !== null) rules.push(`RH > ${h.rhMax}%`);
-                if (h.lightMin !== null) rules.push(`L < ${h.lightMin}`);
-                if (h.lightMax !== null) rules.push(`L > ${h.lightMax}`);
 
-                const ruleStr = rules.join(', ');
-                if (s.sensorNum.toLowerCase().includes(query) || ruleStr.toLowerCase().includes(query)) {
-                    const row = document.createElement('div');
-                    row.style.display = 'flex';
-                    row.style.justifyContent = 'space-between';
-                    row.style.alignItems = 'center';
-                    row.style.padding = '10px 12px';
-                    row.style.background = '#ffffff';
-                    row.style.border = '1px solid #e5e7eb';
-                    row.style.borderRadius = '8px';
+                if (h.tempMin !== null && h.tempMin !== undefined) rules.push(`T < ${h.tempMin}°`);
+                if (h.tempMax !== null && h.tempMax !== undefined) rules.push(`T > ${h.tempMax}°`);
+                if (h.rhMin !== null && h.rhMin !== undefined) rules.push(`RH < ${h.rhMin}%`);
+                if (h.rhMax !== null && h.rhMax !== undefined) rules.push(`RH > ${h.rhMax}%`);
+                if (h.lightMin !== null && h.lightMin !== undefined) rules.push(`L < ${h.lightMin}`);
+                if (h.lightMax !== null && h.lightMax !== undefined) rules.push(`L > ${h.lightMax}`);
 
-                    let ruleDisplay = rules.map(r => `<span style="background:#fff7ed; color:#ea580c; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #ffedd5;">${r}</span>`).join(' ');
-                    if (rules.length === 0) ruleDisplay = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No active alerts</span>';
+                const ruleStr = rules.join(', ').toLowerCase();
+                const sensorNumStr = s.sensorNum ? String(s.sensorNum).toLowerCase() : '';
 
-                    row.innerHTML = `
-                        <div style="font-weight:700; color:#374151; font-size:0.85rem;">Sensor ${s.sensorNum}</div>
-                        <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; max-width:65%;">${ruleDisplay}</div>
+                if (sensorNumStr.includes(query) || ruleStr.includes(query)) {
+                    const card = document.createElement('div');
+                    card.style.display = 'flex';
+                    card.style.flexDirection = 'column';
+                    card.style.gap = '8px';
+                    card.style.padding = '12px';
+                    card.style.background = '#ffffff';
+                    card.style.border = '1px solid #d1e2da';
+                    card.style.borderRadius = '8px';
+                    card.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+
+                    let ruleDisplay = rules.map(r =>
+                        `<span style="background:#fff7ed; color:#ea580c; padding:3px 8px; border-radius:4px; font-size:0.75rem; font-weight:700; border:1px solid #ffedd5; display:inline-block;">${r}</span>`
+                    ).join(' ');
+
+                    if (rules.length === 0) {
+                        ruleDisplay = '<span style="color:#9ca3af; font-size:0.75rem; font-style:italic;">No active alerts</span>';
+                    }
+
+                    card.innerHTML = `
+                        <div style="font-weight:800; color:#333f48; font-size:0.9rem;">Sensor ${s.sensorNum}</div>
+                        <div style="display:flex; gap:6px; flex-wrap:wrap;">${ruleDisplay}</div>
                     `;
-                    list.appendChild(row);
+                    list.appendChild(card);
                 }
             });
         }
@@ -3223,10 +3226,10 @@
             // Add pinging class (triggers CSS animation: blink twice)
             target.classList.add('pinging');
 
-            // Remove after animation completes
+            // Remove after animation completes (1.0s * 2 blinks)
             setTimeout(() => {
                 target.classList.remove('pinging');
-            }, 1200);
+            }, 2000);
         }
 
         // ── EXP Modal Logic ──────────────────────────────────────────
