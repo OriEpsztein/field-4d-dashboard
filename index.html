@@ -80,8 +80,8 @@
         }
 
         .ping-btn {
-            background: #f59e0b;
-            /* Orange */
+            background: #7c3aed;
+            /* Matte Purple */
             color: #ffffff;
             border: none;
             border-radius: 20px;
@@ -95,13 +95,13 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
         }
 
         .ping-btn:hover {
-            background: #d97706;
+            background: #6d28d9;
             transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+            box-shadow: 0 6px 16px rgba(124, 58, 237, 0.35);
         }
 
         .ping-btn:active {
@@ -114,30 +114,45 @@
             fill: currentColor;
         }
 
-        /* Ping Blink Animation */
+        /* Modern Ping Pulse Animation */
         @keyframes ping-blink {
             0% {
                 border-color: transparent;
                 box-shadow: none;
-                background: inherit;
+                transform: scale(1);
             }
 
-            50% {
-                border-color: #7e08ec;
-                box-shadow: 0 0 35px rgba(124, 9, 232, 0.932);
-                background: rgba(168, 85, 247, 0.25);
+            20% {
+                transform: scale(1.03);
+                border-color: #7c3aed;
+                box-shadow: 0 0 25px rgba(124, 58, 237, 0.4);
+                background: rgba(124, 58, 237, 0.08);
+            }
+
+            40% {
+                transform: scale(1);
+                border-color: #7c3aed;
+                box-shadow: 0 0 45px rgba(124, 58, 237, 0.5);
+                background: rgba(124, 58, 237, 0.12);
+            }
+
+            60% {
+                transform: scale(1.02);
+                border-color: #7c3aed;
+                box-shadow: 0 0 25px rgba(124, 58, 237, 0.4);
             }
 
             100% {
                 border-color: transparent;
-                box-shadow: none;
+                box-shadow: 0 0 60px rgba(124, 58, 237, 0);
+                transform: scale(1);
                 background: inherit;
             }
         }
 
         .card.pinging {
-            animation: ping-blink 2s ease-in-out 2 !important;
-            border-color: #7e08ec !important;
+            animation: ping-blink 1.5s cubic-bezier(0.4, 0, 0.2, 1) 2 forwards !important;
+            border-color: #7c3aed !important;
             z-index: 10;
             position: relative;
         }
@@ -171,101 +186,71 @@
             align-items: center;
             justify-content: center;
             padding: 40px 20px;
-            gap: 15px;
-            background-image: url('pictures/Picture1.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         #home-page.active {
             display: flex;
         }
 
-        .home-logo {
+        .home-split-layout {
+            display: flex;
+            width: 100%;
+            max-width: 1000px;
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 768px) {
+            .home-split-layout {
+                flex-direction: column;
+            }
+        }
+
+        .home-panel {
+            flex: 1;
+            background-color: #f4f8f5;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.6);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
+            justify-content: center;
+            padding: 60px 40px;
+            min-height: 400px;
         }
 
-        .home-logo img {
-            height: 140px;
-            filter: drop-shadow(0 8px 32px rgba(255, 253, 230, 0.8));
-            transition: transform 0.3s ease;
-        }
-
-        .home-logo img:hover {
-            transform: scale(1.04);
-        }
-
-        .home-logo-subtitle {
-            font-size: 1.15rem;
-            color: #333f48;
-            font-weight: 600;
-            letter-spacing: 1px;
-            opacity: 0.75;
-        }
-
-        /* Select form */
-        .home-form {
-            background: rgba(247, 248, 243, 0.92);
-            border: 1px solid #7ea898;
-            border-radius: 20px;
-            padding: 40px 60px;
-            box-shadow: 0 8px 32px rgba(51, 63, 72, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            min-width: 500px;
-            max-width: 800px;
-            width: 90%;
-        }
-
-        .home-form h2 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #333f48;
+        .home-panel h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 30px;
             text-align: center;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group label {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: #4a555e;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-        }
-
-        .form-group select {
-            background-color: #ffffff;
-            border: 1.5px solid #b8d1c8;
-            border-radius: 8px;
-            padding: 10px 14px;
-            font-size: 0.95rem;
+        .pi-select {
+            border: none;
+            background-color: #eef2f0;
+            border-radius: 10px;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            width: 100%;
+            max-width: 300px;
             color: #333f48;
-            font-weight: 500;
             cursor: pointer;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a555e'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 10px center;
+            background-position: right 15px center;
             background-size: 20px;
-            padding-right: 36px;
+            text-align: center;
+            text-align-last: center;
+            transition: box-shadow 0.2s;
         }
 
-        .form-group select:focus {
-            border-color: #82c3ab;
+        .pi-select:focus {
+            outline: none;
             box-shadow: 0 0 0 3px rgba(130, 195, 171, 0.25);
         }
 
@@ -434,6 +419,28 @@
             width: 14px;
             height: 14px;
             fill: currentColor;
+        }
+
+        .label-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: #6101bb;
+            color: #ffffff;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .labels-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
         }
 
         .sensor-info {
@@ -1385,6 +1392,252 @@
             height: 18px;
             fill: currentColor;
         }
+
+        .exp-filter-item {
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .exp-filter-item:hover {
+            color: #ffffff;
+            background: rgba(130, 195, 171, 0.2);
+        }
+
+        .exp-filter-item.active {
+            color: #ffffff;
+            background: #82c3ab;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .exp-section-title {
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- Swap Modal Redesign --- */
+        .modal-sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .modal-sensor-card {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .modal-sensor-card:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .modal-sensor-card.selected {
+            border-color: #a855f7;
+            background: #fdf4ff;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15);
+        }
+
+        .modal-sensor-card.selected::after {
+            content: '✓ Selected';
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: #a855f7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .modal-sensor-card .name {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .modal-sensor-card .lla {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-family: monospace;
+        }
+
+        .modal-ping-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+
+        .modal-ping-btn:hover {
+            background: #e2e8f0;
+            color: #334155;
+            transform: scale(1.1);
+        }
+
+        .modal-ping-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .reason-selector {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            background: #ffffff;
+            font-size: 0.95rem;
+            color: #334155;
+            transition: all 0.2s;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .reason-selector:focus {
+            border-color: #82c3ab;
+            box-shadow: 0 0 0 4px rgba(130, 195, 171, 0.1);
+        }
+
+        .card.replaced .sensor-info .lla-wrap {
+            font-size: 0.75rem;
+        }
+
+        /* --- Setup Checklist --- */
+        .setup-checklist {
+            width: 280px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f0;
+            position: sticky;
+            top: 84px;
+            display: none;
+            flex-shrink: 0;
+        }
+
+        .setup-checklist.active {
+            display: block;
+            animation: dropIn 0.3s ease;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: #f4f8f5;
+            border: 1px solid #d1e2da;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #333f48;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .checklist-item:hover {
+            background: #e8f5ef;
+            border-color: #82c3ab;
+            transform: translateX(4px);
+        }
+
+        .checklist-item.done {
+            background: #e8f5ef;
+            border-color: #82c3ab;
+        }
+
+        .chk-icon {
+            font-size: 1rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #c8ddd6;
+            background: #ffffff;
+            color: #82c3ab;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .checklist-item.done .chk-icon {
+            background: #82c3ab;
+            border-color: #82c3ab;
+            color: #ffffff;
+        }
+
+        .start-exp-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #333f48 0%, #4a555e 100%);
+            color: #82c3ab;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 14px rgba(51, 63, 72, 0.2);
+            margin-top: 8px;
+            display: none;
+        }
+
+        .start-exp-btn.visible {
+            display: block;
+            animation: dropIn 0.3s ease;
+        }
+
+        .start-exp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(51, 63, 72, 0.3);
+        }
+
+        .hover-scale {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hover-scale:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(130, 195, 171, 0.5) !important;
+        }
     </style>
 </head>
 
@@ -1394,6 +1647,24 @@
             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
         </svg>
         Copied to clipboard!
+    </div>
+
+    <!-- New Ping Toast -->
+    <div id="ping-toast" class="toast"
+        style="flex-direction: row; justify-content: space-between; gap: 15px; pointer-events: auto; padding: 12px 20px; width: 320px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: #a78bfa;">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+            </svg>
+            <div id="ping-toast-msg" style="line-height: 1.3;">
+                <!-- Filled dynamically -->
+            </div>
+        </div>
+        <button id="ping-toast-scroll-btn"
+            style="background: #a78bfa; color: #1e1b4b; border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem; font-weight: 800; cursor: pointer; transition: background 0.2s;">
+            Find →
+        </button>
     </div>
 
     <header>
@@ -1508,7 +1779,6 @@
             </button>
         </div>
         <div class="header-center" style="display:flex;align-items:center;justify-content:center;gap:15px;">
-            <img src="pictures/logo.png" alt="Field 4D" style="height:48px;">
             <div id="header-meta"
                 style="text-align:left; font-weight:500; font-size:0.95rem; color:#ffffff; display:flex; align-items:center; gap:8px;">
                 <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px;">MAC: <span
@@ -1516,12 +1786,17 @@
                 <span>|</span>
                 <span id="header-exp-name">PEPPER</span>
                 <span>|</span>
-                <span>Location: <span id="header-location">GREENHOUSE</span></span>
-                <span>|</span>
                 <span>Active: <strong style="color:#ffffff;"><span id="active-stats">0/0</span></strong></span>
             </div>
         </div>
         <div class="header-right" style="gap:15px">
+            <button class="ping-btn" onclick="openExpModal('start-1')" type="button"
+                style="background:#10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);">
+                <svg viewBox="0 0 24 24" style="width:16px; height:16px;">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
+                New EXP
+            </button>
             <button class="ping-btn" onclick="pingTest()" type="button">
                 <svg viewBox="0 0 24 24">
                     <path
@@ -1537,7 +1812,7 @@
                     </svg>
                 </button>
                 <div class="settings-dropdown" id="settings-dropdown">
-                    <button class="settings-option" onclick="openExpModal()">START / END EXP</button>
+                    <button class="settings-option" onclick="openExpModal('end-1')">END EXP</button>
                     <button class="settings-option" onclick="openAlertsModal()">ALERTS</button>
                     <button class="settings-option" onclick="openLabelsModal()">LABELS</button>
                     <button class="settings-option" onclick="openMapModal()">3D MAP VIEW</button>
@@ -1547,59 +1822,66 @@
     </header>
 
     <div id="home-page" class="active">
-        <div class="home-logo">
-            <img src="pictures/logo.png" alt="Field 4D Logo">
-        </div>
-
-        <div class="home-form">
-            <h2>Select Session</h2>
-
-            <div class="form-group">
-                <label for="sel-owner">Owner</label>
-                <select id="sel-owner">
-                    <option>Menachem Moshelion</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="sel-hostname">Hostname</label>
-                <select id="sel-hostname">
-                    <option>F4D</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="sel-mac">MAC Address</label>
-                <select id="sel-mac" onchange="handleMacSelection()">
-                    <option value="">— Select MAC Address —</option>
-                    <option value="101" selected>101</option>
+        <div class="home-split-layout">
+            <!-- Left Panel -->
+            <div class="home-panel">
+                <h2>Manage experiments</h2>
+                <select id="sel-mac" class="pi-select" onchange="handleMacSelectionUI()">
+                    <option value="">Select pi</option>
+                    <option value="101">101</option>
                     <option value="202">202</option>
                 </select>
-            </div>
 
-            <div class="form-group">
-                <label for="sel-exp">EXP</label>
-                <div style="display:flex; gap:10px;">
-                    <select id="sel-exp" style="flex:1;">
-                        <option value="">— Select Experiment —</option>
-                    </select>
-                    <button class="small-action-btn" onclick="openExpModal('start-1')">
-                        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:currentColor">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                        </svg>
-                        START NEW EXP
+                <div id="manage-exp-controls"
+                    style="display: none; flex-direction: column; width: 100%; max-width: 300px; margin-top: 25px;">
+                    <button class="home-go-btn" style="width: 100%;" onclick="tryShowDashboard()">
+                        Open Dashboard →
                     </button>
                 </div>
             </div>
 
-            <button class="home-go-btn" id="go-dashboard-btn" onclick="tryShowDashboard()">Open dashboard to see current
-                EXP →</button>
+            <!-- Right Panel -->
+            <div class="home-panel">
+                <h2>Analyze data</h2>
+                <select id="sel-mac-analyze" class="pi-select" onchange="handleAnalyzeSelectionUI()">
+                    <option value="">Select pi</option>
+                    <option value="101">101</option>
+                    <option value="202">202</option>
+                </select>
+
+                <div id="analyze-controls"
+                    style="display: none; flex-direction: column; width: 100%; max-width: 300px; margin-top: 25px;">
+                    <button class="home-go-btn" style="width: 100%;"
+                        onclick="showCustomAlert('Analyze Data module coming soon!')">
+                        Open Analysis →
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="dashboard-page">
-        <main>
-            <div class="grid-container" id="sensor-grid"></div>
+        <main
+            style="display:flex; gap:25px; align-items:flex-start; padding: 30px 20px; max-width: 1600px; margin: 0 auto;">
+            <div class="grid-container" id="sensor-grid" style="flex:1;"></div>
+
+            <div id="setup-checklist" class="setup-checklist">
+                <h3 style="margin-top:0; color:#333f48; font-size:1.2rem; margin-bottom: 20px; font-weight:800;">
+                    Experiment Setup</h3>
+                <div class="checklist-item" id="chk-names" onclick="openBatchNamesModal()">
+                    <div class="chk-icon" id="chk-icon-names"></div> Assign Names
+                </div>
+                <div class="checklist-item" id="chk-coords" onclick="openBatchCoordsModal()">
+                    <div class="chk-icon" id="chk-icon-coords"></div> Coordinates
+                </div>
+                <div class="checklist-item" id="chk-alerts" onclick="openAlertsModal()">
+                    <div class="chk-icon" id="chk-icon-alerts"></div> Alerts
+                </div>
+                <div class="checklist-item" id="chk-labels" onclick="openLabelsModal()">
+                    <div class="chk-icon" id="chk-icon-labels"></div> Labels
+                </div>
+                <button class="start-exp-btn" id="start-exp-btn" onclick="openVerifySensorsModal()">START EXP →</button>
+            </div>
         </main>
     </div>
 
@@ -1622,23 +1904,27 @@
     </div>
 
     <div id="exp-modal" class="modal-overlay" onclick="closeExpModal()">
-        <div class="modal-content" style="max-width: 520px;" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Experiment Management</h2>
+        <div class="modal-content" style="max-width: 520px; background-color: #f9fbf9;"
+            onclick="event.stopPropagation()">
+            <div class="modal-header"
+                style="border-bottom: 1px solid #d1e2da; padding-bottom: 15px; margin-bottom: 20px;">
+                <h2 class="modal-title" style="margin:0; font-size:1.6rem; color:#374850; font-weight:800;">Experiment
+                    Management</h2>
                 <div class="modal-actions">
-                    <button class="icon-btn close-btn" onclick="closeExpModal()" aria-label="Close">
-                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                    <button onclick="closeExpModal()" aria-label="Close"
+                        style="background:#4a555e; border:none; border-radius:6px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition: opacity 0.2s;"
+                        onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#ffffff;">
                             <path
                                 d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                         </svg>
                     </button>
                 </div>
             </div>
-            <div class="modal-body" style="padding-top: 20px;">
+            <div class="modal-body">
 
                 <div id="exp-view-select" class="exp-view active">
                     <h2>What would you like to do?</h2>
-                    <button class="exp-btn-large" onclick="goToExpView('start-1')">START NEW EXP</button>
                     <button class="exp-btn-large" style="border-color:#e4a1a1; color:#b91c1c"
                         onclick="goToExpView('end-1')">END CURRENT EXP</button>
                 </div>
@@ -1646,55 +1932,23 @@
                 <div id="exp-view-start-1" class="exp-view">
                     <div style="margin-bottom:20px">
                         <label
-                            style="display:block; margin-bottom:8px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">Name
+                            style="display:block; margin-bottom:8px; font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#374850;">Name
                             of Experiment</label>
                         <input type="text" id="exp-start-name" class="modal-input"
-                            style="width:100%; font-size:1.1rem; padding:14px 16px; border-radius:10px; border:1.5px solid #b8d1c8;"
-                            placeholder="e.g. Field_Test_02">
+                            style="width:100%; font-size:1.1rem; padding:12px 16px; border-radius:8px; border:1px solid #b8d1c8; color:#374850;"
+                            placeholder="e.g. MELON">
                     </div>
                     <div style="margin-bottom:24px">
                         <label
-                            style="display:block; margin-bottom:8px; font-size:0.78rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">Location</label>
+                            style="display:block; margin-bottom:8px; font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#374850;">Location</label>
                         <input type="text" id="exp-start-loc" class="modal-input"
-                            style="width:100%; font-size:1.1rem; padding:14px 16px; border-radius:10px; border:1.5px solid #b8d1c8;"
+                            style="width:100%; font-size:1.1rem; padding:12px 16px; border-radius:8px; border:1px solid #b8d1c8; color:#374850;"
                             placeholder="e.g. GREENHOUSE">
-                    </div>
-                    <div id="exp-start-btns-home" style="display:none; flex-direction:column; gap:8px;">
-                        <button class="edit-btn saving"
-                            style="width:100%; justify-content:center; font-size:1rem; padding:14px; border-radius:10px; background:#82c3ab; border-color:#82c3ab;"
-                            onclick="submitExpStartHome()">Continue to Dashboard →</button>
                     </div>
                     <div id="exp-start-btns-standard" style="display:flex; flex-direction:column; gap:8px;">
                         <button class="edit-btn saving"
-                            style="width:100%; justify-content:center; font-size:1rem; padding:14px; border-radius:10px;"
-                            onclick="submitExpStartStep1()">OK — Proceed to Verification →</button>
-                    </div>
-                </div>
-
-                <div id="exp-view-start-2" class="exp-view">
-                    <h2>Verify Sensors</h2>
-                    <div style="text-align:center; font-weight:700; color:#4a555e; font-size:1.1rem"
-                        id="exp-start-sensors-count">
-                        Number of Sensors: 0
-                    </div>
-
-                    <button class="edit-btn"
-                        style="margin:0 auto; background:transparent; border:1px solid #82c3ab; color:#82c3ab"
-                        onclick="toggleExpSensorsList()">See all names</button>
-
-                    <div id="exp-sensors-list" class="exp-sensors-list"></div>
-
-                    <div style="margin-top:15px; padding-top:15px; border-top:1px dashed #b8d1c8">
-                        <label class="detail-label" style="display:block; margin-bottom:5px;">Please verify by typing
-                            the EXP name again:</label>
-                        <input type="text" id="exp-start-verify-name" class="modal-input"
-                            placeholder="Verify EXP name...">
-                    </div>
-                    <button class="edit-btn saving" id="exp-start-confirm-btn"
-                        style="width:100%; justify-content:center" onclick="submitExpStartStep2()">Confirm</button>
-
-                    <div id="exp-start-success" class="exp-success" style="display:none">
-                        Congratulations to our new baby (:
+                            style="width:100%; justify-content:center; font-size:1rem; font-weight:700; padding:14px; border-radius:8px; background:#374850; color:#ffffff;"
+                            onclick="submitExpStartStep1()">OK — Continue to Dashboard to edit sensors →</button>
                     </div>
                 </div>
 
@@ -1747,71 +2001,116 @@
                         <label
                             style="display:block; margin-bottom:12px; font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e;">1.
                             Set Thresholds</label>
+                        <!-- Temperature Section -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
-                            <h3
-                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
-                                Temperature (°C)</h3>
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <h3
+                                    style="margin:0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                    Temperature (°C)</h3>
+                            </div>
+                            <div
+                                style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:8px; align-items: flex-end;">
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
-                                        (Below)</label>
-                                    <input type="number" id="alert-temp-min" class="modal-input" placeholder="No Min"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Min</label>
+                                    <input type="number" id="alert-temp-min" class="modal-input" placeholder="Min"
+                                        style="width:100%; height:32px; font-size:0.85rem">
                                 </div>
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
-                                        (Above)</label>
-                                    <input type="number" id="alert-temp-max" class="modal-input" placeholder="No Max"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Max</label>
+                                    <input type="number" id="alert-temp-max" class="modal-input" placeholder="Max"
+                                        style="width:100%; height:32px; font-size:0.85rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Start</label>
+                                    <input type="time" id="alert-temp-time-start" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">End</label>
+                                    <input type="time" id="alert-temp-time-end" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Humidity Section -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
-                            <h3
-                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
-                                Humidity (RH %)</h3>
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <h3
+                                    style="margin:0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                    Humidity (RH %)</h3>
+                            </div>
+                            <div
+                                style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:8px; align-items: flex-end;">
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
-                                        (Below)</label>
-                                    <input type="number" id="alert-rh-min" class="modal-input" placeholder="No Min"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Min</label>
+                                    <input type="number" id="alert-rh-min" class="modal-input" placeholder="Min"
+                                        style="width:100%; height:32px; font-size:0.85rem">
                                 </div>
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
-                                        (Above)</label>
-                                    <input type="number" id="alert-rh-max" class="modal-input" placeholder="No Max"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Max</label>
+                                    <input type="number" id="alert-rh-max" class="modal-input" placeholder="Max"
+                                        style="width:100%; height:32px; font-size:0.85rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Start</label>
+                                    <input type="time" id="alert-rh-time-start" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">End</label>
+                                    <input type="time" id="alert-rh-time-end" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Light Section -->
                         <div
                             style="margin-bottom:12px; background: #f9fafb; padding:12px; border-radius:10px; border:1px solid #f3f4f6;">
-                            <h3
-                                style="margin:0 0 8px 0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
-                                Light (Lux)</h3>
-                            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                                <h3
+                                    style="margin:0; font-size:0.85rem; color:#111827; text-transform:uppercase; letter-spacing:0.5px">
+                                    Light (Lux)</h3>
+                            </div>
+                            <div
+                                style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:8px; align-items: flex-end;">
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Min
-                                        (Below)</label>
-                                    <input type="number" id="alert-light-min" class="modal-input" placeholder="No Min"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Min</label>
+                                    <input type="number" id="alert-light-min" class="modal-input" placeholder="Min"
+                                        style="width:100%; height:32px; font-size:0.85rem">
                                 </div>
                                 <div>
                                     <label
-                                        style="display:block; font-size:0.65rem; color:#6b7280; margin-bottom:3px">Max
-                                        (Above)</label>
-                                    <input type="number" id="alert-light-max" class="modal-input" placeholder="No Max"
-                                        style="width:100%; height:34px; font-size:0.9rem">
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Max</label>
+                                    <input type="number" id="alert-light-max" class="modal-input" placeholder="Max"
+                                        style="width:100%; height:32px; font-size:0.85rem">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">Start</label>
+                                    <input type="time" id="alert-light-time-start" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
+                                </div>
+                                <div>
+                                    <label
+                                        style="display:block; font-size:0.6rem; color:#6b7280; margin-bottom:2px">End</label>
+                                    <input type="time" id="alert-light-time-end" class="modal-input"
+                                        style="width:100%; height:32px; font-size:0.8rem; padding: 2px 4px;">
                                 </div>
                             </div>
                         </div>
@@ -1968,13 +2267,10 @@
                         style="max-height: 250px; overflow-y: auto; background: #f0f4f2; border: 1px solid #d1e2da; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;">
                     </div>
 
-                    <div style="margin-top:25px; display:flex; gap:12px;">
+                    <div style="margin-top:25px;">
                         <button class="edit-btn saving"
-                            style="flex:1; justify-content:center; padding:14px; border-radius:10px; font-size:1rem;"
+                            style="width:100%; justify-content:center; padding:14px; border-radius:10px; font-size:1rem;"
                             onclick="applyNewLabel()">Apply Label</button>
-                        <button class="edit-btn saving"
-                            style="flex:1; justify-content:center; padding:14px; border-radius:10px; font-size:1rem; background:transparent; border:1px solid #e4a1a1; color:#b91c1c;"
-                            onclick="removeNewLabel()">Remove Label</button>
                     </div>
                 </div>
 
@@ -2007,74 +2303,205 @@
                     </button>
                 </div>
             </div>
-            <div class="modal-body" style="padding-top: 15px;">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; position:relative;">
-
-                    <div id="switch-old-unit-card"
-                        style="background:#f8faf9; padding:20px; border-radius:12px; border:1px solid #d1e2da; transition: all 0.3s ease-in-out;">
-                        <h3
-                            style="margin:0 0 15px 0; color:#4a555e; font-size:1rem; text-transform:uppercase; letter-spacing:0.5px">
-                            Current Sensor</h3>
-                        <div id="switch-old-info">
-                            <div class="detail-label">Sensor Name</div>
-                            <div class="detail-value" id="switch-old-name" style="margin-bottom:10px">Sensor 011</div>
-
-                            <div id="switch-old-label-wrap" style="display:none; margin-bottom:10px;">
-                                <div class="detail-label">Label</div>
-                                <div class="detail-value" id="switch-old-label">NORTH</div>
-                            </div>
-
-                            <div id="switch-old-coords-wrap" style="display:none; margin-bottom:10px;">
-                                <div class="detail-label">Coordinates</div>
-                                <div class="detail-value" id="switch-old-coords">32.0, 34.8</div>
-                            </div>
-
-                            <div class="detail-label">Current LLA</div>
-                            <div class="detail-value" id="switch-old-lla">1234567890</div>
-                        </div>
-                        <button class="ping-btn" style="margin-top:20px; width:100%; justify-content:center"
-                            onclick="pingSpecificSensor('old')">Ping Current</button>
+            <div class="modal-body" style="padding: 20px; display: flex; flex-direction: column; gap: 25px;">
+                <!-- Current Unit Section -->
+                <div>
+                    <h3
+                        style="margin:0 0 12px 0; color:#4a555e; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; font-weight:800;">
+                        Current Sensor</h3>
+                    <div id="switch-current-unit-placeholder">
+                        <!-- Current sensor card will be rendered here -->
                     </div>
-
-                    <div id="switch-new-unit-card"
-                        style="background:#fff9f0; padding:20px; border-radius:12px; border:1px solid #fce8cc; transition: all 0.3s ease-in-out;">
-                        <h3
-                            style="margin:0 0 15px 0; color:#9c6e2a; font-size:1rem; text-transform:uppercase; letter-spacing:0.5px">
-                            New Unit</h3>
-                        <div style="margin-bottom:15px">
-                            <label class="detail-label" style="display:block; margin-bottom:5px;">Select New Unit
-                                (LLA)</label>
-                            <select id="switch-new-lla" class="modal-input"
-                                style="width:100%; background:#fff; height:42px;" onchange="updateNewLlaDisplay()">
-                                <option value="">— Choose LLA —</option>
-                            </select>
-                        </div>
-                        <div id="switch-new-lla-display-wrap"
-                            style="display:none; margin-bottom:15px; padding:10px; background:#fff; border-radius:8px; border:1px solid #fce8cc; text-align:center;">
-                            <div class="detail-label">LLA</div>
-                            <div id="switch-new-lla-display" class="detail-value"
-                                style="font-size:1.2rem; user-select:text; cursor:text; color:#9c6e2a; font-weight:700;">
-                                —</div>
-                        </div>
-                        <button class="ping-btn"
-                            style="margin-top:20px; width:100%; justify-content:center; background:#f0b44a; border-color:#f0b44a; color:#fff"
-                            onclick="pingSpecificSensor('new')">Ping New Unit</button>
-                    </div>
-
                 </div>
 
-                <div style="margin-top:30px; text-align:center">
-                    <button class="edit-btn saving"
-                        style="width:100%; justify-content:center; padding:15px; font-size:1.1rem"
-                        onclick="performSwitch()">Finalize Swap</button>
-                    <p style="font-size:0.8rem; color:#606f7b; margin-top:10px">Warning: This will update the sensor ID
-                        in the dashboard.</p>
+                <!-- Separation Line -->
+                <div style="height: 1px; border-top: 2px dashed #e2e8f0;"></div>
+
+                <!-- Available Units Section -->
+                <div>
+                    <h3
+                        style="margin:0 0 12px 0; color:#4a555e; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; font-weight:800;">
+                        Available New Units (Indefinite)</h3>
+                    <p style="margin:-8px 0 15px 0; font-size:0.8rem; color:#64748b;">Choose one of the indefinite
+                        sensors below to swap into the current experiment.</p>
+                    <div id="switch-available-grid" class="modal-sensor-grid">
+                        <!-- Indefinite sensor cards will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Replacement Reason Section -->
+                <div style="margin-top: 10px; padding-top: 20px; border-top: 2px dashed #e2e8f0;">
+                    <label
+                        style="display:block; margin-bottom:12px; font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#4a555e;">
+                        Reason for Replacement</label>
+                    <select id="swap-reason" class="reason-selector">
+                        <option value="BATTERY">Battery Depleted</option>
+                        <option value="DAMAGE">Hardware Damage / Faulty</option>
+                        <option value="LOOSE">Sensor Loose / Detached</option>
+                        <option value="SIGNAL">Poor Signal / Offline</option>
+                        <option value="UPGRADE">Hardware Upgrade</option>
+                        <option value="OTHER">Other / Maintenance</option>
+                    </select>
+                </div>
+
+                <!-- Action Button -->
+                <div style="margin-top: 10px;">
+                    <button class="edit-btn saving" id="confirm-swap-btn"
+                        style="width:100%; justify-content:center; padding:16px; border-radius:12px; font-size:1.1rem;"
+                        disabled onclick="submitSwap()">
+                        Confirm Swap & Transition
+                    </button>
+                    <p style="font-size:0.8rem; color:#606f7b; margin-top:10px; text-align:center;">Warning: This will
+                        update the sensor ID in the dashboard.</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Batch Names Modal -->
+    <div id="names-modal" class="modal-overlay" onclick="closeNamesModal()">
+        <div class="modal-content" style="max-width: 600px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Assign Names</h2>
+                <div class="modal-actions">
+                    <button class="icon-btn close-btn" onclick="closeNamesModal()" aria-label="Close">
+                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-top: 10px;">
+                <div style="margin-bottom: 15px; font-size: 0.9rem; color: #64748b;">Assign custom names to the sensors
+                    currently in this experiment.</div>
+                <div id="batch-names-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                    <!-- Names list rendered here -->
+                </div>
+                <div style="margin-top: 25px;">
+                    <button class="edit-btn saving"
+                        style="width: 100%; justify-content: center; padding: 14px; border-radius: 10px; font-size: 1.05rem;"
+                        onclick="saveBatchNames()">Save All Names</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Batch Coordinates Modal -->
+    <div id="coords-modal" class="modal-overlay" onclick="closeCoordsModal()">
+        <div class="modal-content" style="max-width: 700px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" style="margin:0; font-size:1.5rem;">Assign Coordinates</h2>
+                <div class="modal-actions">
+                    <button class="icon-btn close-btn" onclick="closeCoordsModal()" aria-label="Close">
+                        <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:currentColor">
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding-top: 10px;">
+                <div style="margin-bottom: 15px; font-size: 0.9rem; color: #64748b;">Set X, Y, Z locations for sensors
+                    in this experiment.</div>
+                <div
+                    style="display: flex; gap: 10px; margin-bottom: 10px; padding: 0 10px; font-weight: 800; font-size: 0.75rem; color: #82c3ab; text-transform: uppercase;">
+                    <div style="flex:1;">Sensor</div>
+                    <div style="width:70px; text-align:center;">X</div>
+                    <div style="width:70px; text-align:center;">Y</div>
+                    <div style="width:70px; text-align:center;">Z</div>
+                </div>
+                <div id="batch-coords-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                    <!-- Coords list rendered here -->
+                </div>
+                <div style="margin-top: 25px;">
+                    <button class="edit-btn saving"
+                        style="width:100%; justify-content: center; padding: 14px; border-radius: 10px; font-size: 1.05rem;"
+                        onclick="saveBatchCoords()">Save Coordinates</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Verify Sensors Modal -->
+    <div id="verify-sensors-modal" class="modal-overlay" style="z-index: 2500;" onclick="closeVerifySensorsModal()">
+        <div class="modal-content" style="max-width: 480px;" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 class="modal-title" style="margin:0; font-size:1.4rem;">Verify Sensors</h2>
+                <button class="close-modal" onclick="closeVerifySensorsModal()">
+                    <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-top:10px;">
+                <div
+                    style="margin-bottom:20px; background:#f4f8f5; border-radius:12px; padding:16px; border:1px solid #d1e2da;">
+                    <div
+                        style="font-size:0.75rem; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; color:#4a555e; margin-bottom:8px;">
+                        Number of Sensors</div>
+                    <div id="verify-sensor-count" style="font-size:2.2rem; font-weight:900; color:#333f48;">0</div>
+                </div>
+
+                <div style="margin-bottom:20px;">
+                    <button onclick="toggleVerifySensorNames()"
+                        style="background:#eef2f0; border:1px solid #d1e2da; border-radius:8px; padding:10px 18px; font-size:0.85rem; font-weight:700; color:#333f48; cursor:pointer; width:100%; text-align:left; display:flex; justify-content:space-between; align-items:center;"
+                        id="verify-toggle-btn">
+                        <span>Show Sensor Names</span>
+                        <span id="verify-toggle-arrow">▼</span>
+                    </button>
+                    <div id="verify-sensor-list"
+                        style="display:none; background:#f9fafb; border:1px solid #d1e2da; border-radius:8px; margin-top:8px; padding:10px; max-height:200px; overflow-y:auto;">
+                        <!-- filled dynamically -->
+                    </div>
+                </div>
+
+                <button class="edit-btn saving"
+                    style="width:100%; justify-content:center; padding:16px; border-radius:12px; font-size:1.1rem; font-weight:800;"
+                    onclick="confirmStartExp()">Start EXP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Alert/Confirm Modal for Canvas Preview Restrictions -->
+    <div id="custom-alert-modal" class="modal-overlay" style="z-index: 3000;">
+        <div class="modal-content" style="max-width: 400px; text-align: center;">
+            <h3 id="custom-alert-title" style="margin: 0 0 15px 0; font-size: 1.3rem; color: #333f48;">Notice</h3>
+            <p id="custom-alert-msg"
+                style="margin-bottom: 25px; color: #4a555e; font-size: 0.95rem; white-space: pre-wrap; line-height: 1.5;">
+            </p>
+            <div style="display:flex; gap: 10px; justify-content: center;">
+                <button id="custom-alert-cancel" class="edit-btn"
+                    style="background:#e2e8f0; color:#333; justify-content:center; flex:1;">Cancel</button>
+                <button id="custom-alert-ok" class="edit-btn saving" style="justify-content:center; flex:1;">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // --- Custom Alert/Confirm handling ---
+        function showCustomAlert(msg, isConfirm = false, callback = null) {
+            const modal = document.getElementById('custom-alert-modal');
+            document.getElementById('custom-alert-msg').innerText = msg;
+
+            const cancelBtn = document.getElementById('custom-alert-cancel');
+            const okBtn = document.getElementById('custom-alert-ok');
+
+            cancelBtn.style.display = isConfirm ? 'flex' : 'none';
+
+            okBtn.onclick = () => {
+                modal.classList.remove('active');
+                if (callback) callback(true);
+            };
+            cancelBtn.onclick = () => {
+                modal.classList.remove('active');
+                if (callback) callback(false);
+            };
+
+            modal.classList.add('active');
+        }
+
         // ── Page navigation ──────────────────────────────────────────
         const homePage = document.getElementById('home-page');
         const dashPage = document.getElementById('dashboard-page');
@@ -2097,14 +2524,48 @@
             '': true
         };
 
+        let piExperiments = {
+            '101': ['PEPPER', 'TOMATO', 'GRAPE'],
+            '202': []
+        };
+
         function copyWithFeedback(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('copy-toast');
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            });
+            // Using standard clipboard API, with a fallback if iframe restricted
+            try {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast();
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(text);
+                });
+            } catch (err) {
+                fallbackCopyTextToClipboard(text);
+            }
+        }
+
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('copy-toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
         }
 
         function showHome() {
@@ -2112,41 +2573,47 @@
             dashPage.classList.remove('active');
             header.style.display = 'none';
 
-            // Set defaults: MAC 101 and PEPPER
-            document.getElementById('sel-mac').value = '101';
-            handleMacSelection();
-            document.getElementById('sel-exp').value = 'PEPPER';
+            // Start empty
+            document.getElementById('sel-mac').value = '';
+            document.getElementById('sel-mac-analyze').value = '';
+
+            document.getElementById('manage-exp-controls').style.display = 'none';
+            document.getElementById('analyze-controls').style.display = 'none';
         }
 
-        function handleMacSelection() {
+        function handleMacSelectionUI() {
             const mac = document.getElementById('sel-mac').value;
-            const expSelect = document.getElementById('sel-exp');
+            const controls = document.getElementById('manage-exp-controls');
 
-            // Clear current options
-            expSelect.innerHTML = '<option value="">— Select Experiment —</option>';
-
-            if (mac === '101') {
-                const opt = document.createElement('option');
-                opt.value = 'PEPPER';
-                opt.textContent = 'PEPPER';
-                expSelect.appendChild(opt);
+            if (mac) {
+                controls.style.display = 'flex';
+            } else {
+                controls.style.display = 'none';
             }
         }
 
+        function handleAnalyzeSelectionUI() {
+            const mac = document.getElementById('sel-mac-analyze').value;
+            const controls = document.getElementById('analyze-controls');
+            if (mac) {
+                controls.style.display = 'flex';
+            } else {
+                controls.style.display = 'none';
+            }
+        }
+
+        window.allExpMode = false;
         function tryShowDashboard() {
             const mac = document.getElementById('sel-mac').value;
-            const expSelect = document.getElementById('sel-exp').value;
 
             if (!mac) {
-                alert('Please select a MAC Address.');
-                return;
-            }
-            if (!expSelect) {
-                alert('Please select an Experiment or start a new one - if u dont have start new');
+                showCustomAlert('Please select a MAC Address.');
                 return;
             }
 
-            showDashboard(mac, expSelect, 'GREENHOUSE');
+            window.allExpMode = true;
+            const targetExp = 'ALL';
+            showDashboard(mac, targetExp, 'GREENHOUSE');
         }
 
         function showDashboard(mac, expName, location) {
@@ -2154,24 +2621,56 @@
             dashPage.classList.add('active');
             header.style.display = 'flex';
 
+            // Hide checklist initially on new dashboard load
+            document.getElementById('setup-checklist').classList.remove('active');
+
             // Set global context
             window.currentExp = expName;
+            window.currentExpFilter = expName === 'ALL' ? 'ALL' : expName;
 
             // Generate data if not exists
-            buildGrid();
+            buildGrid(mac);
 
             // Set Header context
-            document.getElementById('header-meta').innerHTML = `
-                <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px; color:#ffffff;">MAC: <span id="header-mac">${mac || '—'}</span></span>
-                <span>|</span>
-                <span id="header-exp-name" style="color:#ffffff;">${expName}</span>
-                <span>|</span>
-                <span style="color:#ffffff;">Location: <span id="header-location">${location}</span></span>
-                <span>|</span>
-                <span style="color:#ffffff;">Active: <strong style="color:#ffffff;"><span id="active-stats">${sensors.filter(s => !s.inactive).length}/${totalSensors}</span></strong></span>
-            `;
+            updateHeaderMeta(mac, expName, location);
 
-            // Render grid to reflect potential new names in UI
+            // Render grid
+            renderGrid();
+        }
+
+        function updateHeaderMeta(mac, expName, location) {
+            const meta = document.getElementById('header-meta');
+            if (window.allExpMode) {
+                const exps = piExperiments[mac] || [];
+                const filterHtml = exps.map(name =>
+                    `<span class="exp-filter-item ${window.currentExpFilter === name ? 'active' : ''}" onclick="filterExp('${name}')">${name}</span>`
+                ).join('');
+
+                meta.innerHTML = `
+                    <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px; color:#ffffff;">MAC: <span id="header-mac">${mac}</span></span>
+                    <span style="margin: 0 10px; opacity: 0.5;">|</span>
+                    <div class="exp-filters" style="display:flex; gap:12px; align-items:center;">
+                        <span class="exp-filter-item ${window.currentExpFilter === 'ALL' ? 'active' : ''}" onclick="filterExp('ALL')">ALL</span>
+                        ${filterHtml}
+                    </div>
+                    <span style="margin: 0 10px; opacity: 0.5;">|</span>
+                    <span style="color:#ffffff;">Active: <strong style="color:#ffffff;"><span id="active-stats">0/0</span></strong></span>
+                `;
+            } else {
+                meta.innerHTML = `
+                    <span id="header-mac-line" style="font-weight:700; letter-spacing:0.5px; color:#ffffff;">MAC: <span id="header-mac">${mac || '—'}</span></span>
+                    <span>|</span>
+                    <span id="header-exp-name" style="color:#ffffff;">${expName}</span>
+                    <span>|</span>
+                    <span style="color:#ffffff;">Active: <strong style="color:#ffffff;"><span id="active-stats">0/0</span></strong></span>
+                `;
+            }
+        }
+
+        function filterExp(name) {
+            window.currentExpFilter = name;
+            const mac = document.getElementById('header-mac').innerText;
+            updateHeaderMeta(mac, window.currentExp, 'GREENHOUSE');
             renderGrid();
         }
 
@@ -2189,128 +2688,142 @@
         // ── Sensor data store ─────────────────────────────────────
         let sensors = [];
         let gridBuilt = false;
+        let currentLoadedMac = null;
         let currentSort = 'name';
         let sortAsc = { name: true, lastseen: false, status: true, lla: true, label: true };
 
-        function buildGrid() {
-            if (gridBuilt) return;
+        function buildGrid(mac) {
+            if (gridBuilt && currentLoadedMac === mac) return;
             gridBuilt = true;
+            currentLoadedMac = mac;
+            sensors = [];
 
-            // Temporary map to store main sensor LLAs for replacement linkage
-            const mainLlas = {};
+            // Ensure PI exists in dictionary
+            if (!piExperiments[mac]) piExperiments[mac] = [];
 
-            // 1. Generate 15 Main Sensors
-            for (let i = 0; i < 15; i++) {
-                let num = i + 1;
-                let sensorNum = num.toString().padStart(3, '0');
-
-                let nod = String.fromCharCode(65 + (i % 9)); // Node A, B, C...
-
-                // Mix of Active, Inactive, Indefinite
-                let status = 'active';
-                if (i === 3 || i === 7 || i === 11) status = 'inactive';
-                else if (i === 4 || i === 9 || i === 14) status = 'indefinite';
-
-                let inactive = (status === 'inactive');
-                let replaced = false;
-                let indefinite = (status === 'indefinite');
-
-                let now = new Date();
-                if (status !== 'active') {
-                    now.setHours(now.getHours() - (i + 1));
-                } else {
-                    now.setMinutes(now.getMinutes() - (i + 1));
+            if (mac === '202') {
+                // Mock indefinite sensors for PI 202 so they can be assigned to new experiments
+                const genLla = (n) => (3e9 + n * 1e7 + 123);
+                for (let i = 1; i <= 6; i++) {
+                    let sensorNum = i.toString().padStart(3, '0');
+                    let lla = genLla(i);
+                    sensors.push(genOneSensor(i + 200, sensorNum, '', 'indefinite', lla));
                 }
-
-                let currentLla = (1e9 + i * 1e7 + 777);
-                mainLlas[num] = currentLla; // Store for linkage
-
-                let pool = ['NORTH', 'SAND', 'ABA'];
-                let count = Math.floor(Math.random() * 3); // 0, 1, or 2 labels
-                let selected = [];
-                let poolCopy = [...pool];
-                for (let j = 0; j < count; j++) {
-                    let idx = Math.floor(Math.random() * poolCopy.length);
-                    selected.push(poolCopy[idx]);
-                    poolCopy.splice(idx, 1);
-                }
-
-                sensors.push({
-                    num,
-                    sensorNum,
-                    status,
-                    inactive,
-                    replaced,
-                    indefinite,
-                    replacedWithLla: null,
-                    lastSeenDate: new Date(now),
-                    lastSeenStr: formatDate(now),
-                    lla: currentLla,
-                    xyz: {
-                        x: Math.floor(Math.random() * 15),
-                        y: Math.floor(Math.random() * 15),
-                        z: Math.floor(Math.random() * 15)
-                    },
-                    temp: (12 + Math.random() * 20).toFixed(1),
-                    light: Math.floor(200 + Math.random() * 800),
-                    battery: 2900,
-                    rh: Math.floor(30 + Math.random() * 40),
-                    alert: null,
-                    labels: [...selected],
-                    thresholds: {
-                        tempMin: null, tempMax: null,
-                        rhMin: null, rhMax: null,
-                        lightMin: null, lightMax: null
-                    }
-                });
+                renderLabelFilterUI();
+                renderGrid();
+                return;
             }
 
-            // 2. Generate 3 Replaced Sensors (linked to 1, 2, 3)
-            for (let i = 0; i < 3; i++) {
-                let baseNum = i + 1;
-                let num = 100 + baseNum; // Internal unique ID
-                let sensorNum = baseNum.toString().padStart(3, '0') + ' Replaced';
+            const mainLlas = {};
+            const genLla = (n) => (1e9 + n * 1e7 + 777);
 
-                let status = 'replaced';
-                let inactive = false;
-                let replaced = true;
-                let indefinite = false;
+            // 1. PEPPER (001-014)
+            for (let i = 1; i <= 14; i++) {
+                let status = (i % 4 === 0) ? 'inactive' : 'active';
+                let sensorNum = i.toString().padStart(3, '0');
+                let lla = genLla(i);
+                mainLlas[i] = lla;
+                sensors.push(genOneSensor(i, sensorNum, 'PEPPER', status, lla));
+            }
+            // 2. PEPPER REPLACED (001-003)
+            for (let i = 1; i <= 3; i++) {
+                let sensorNum = i.toString().padStart(3, '0') + ' Replaced';
+                let lla = (2e9 + i * 1e7 + 555);
+                sensors.push(genOneSensor(100 + i, sensorNum, 'PEPPER', 'replaced', lla, mainLlas[i]));
+            }
 
-                let now = new Date();
-                now.setHours(now.getHours() - 48); // Replaced sensors are old
+            // 3. GRAPE (015-020)
+            for (let i = 15; i <= 20; i++) {
+                let status = 'active';
+                if (i >= 17 && i <= 18) status = 'inactive';
+                if (i >= 19 && i <= 20) status = 'replaced';
 
-                sensors.push({
-                    num,
-                    sensorNum,
-                    status,
-                    inactive,
-                    replaced,
-                    indefinite,
-                    replacedWithLla: mainLlas[baseNum], // LINKED to main sensor's LLA
-                    lastSeenDate: new Date(now),
-                    lastSeenStr: formatDate(now),
-                    lla: (2e9 + i * 1e7 + 555), // Its own unique LLA
-                    xyz: {
-                        x: Math.floor(Math.random() * 15),
-                        y: Math.floor(Math.random() * 15),
-                        z: Math.floor(Math.random() * 15)
-                    },
-                    temp: '--',
-                    light: '--',
-                    battery: '--',
-                    rh: '--',
-                    alert: null,
-                    labels: [],
-                    thresholds: {
-                        tempMin: null, tempMax: null,
-                        rhMin: null, rhMax: null,
-                        lightMin: null, lightMax: null
-                    }
-                });
+                let sensorNum = i.toString().padStart(3, '0');
+                let lla = genLla(i);
+                let replacedWith = (status === 'replaced') ? genLla(i - 4) : null;
+                sensors.push(genOneSensor(i, sensorNum, 'GRAPE', status, lla, replacedWith));
+            }
+
+            // 4. TOMATO (021-026)
+            for (let i = 21; i <= 26; i++) {
+                let status = 'active';
+                if (i >= 23 && i <= 24) status = 'inactive';
+                if (i >= 25 && i <= 26) status = 'replaced';
+
+                let sensorNum = i.toString().padStart(3, '0');
+                let lla = genLla(i);
+                let replacedWith = (status === 'replaced') ? genLla(i - 4) : null;
+                let reason = null;
+                if (status === 'replaced') {
+                    reason = (i === 25) ? "Details of replace" : "Maintenance / Other";
+                }
+                sensors.push(genOneSensor(i, sensorNum, 'TOMATO', status, lla, replacedWith, reason));
+            }
+
+            // 5. INDEFINITE (027-029)
+            for (let i = 27; i <= 29; i++) {
+                let sensorNum = i.toString().padStart(3, '0');
+                let lla = genLla(i);
+                sensors.push(genOneSensor(i, sensorNum, 'PEPPER', 'indefinite', lla));
             }
 
             renderLabelFilterUI();
             renderGrid();
+        }
+
+        function genOneSensor(id, sensorNum, expName, status, lla, replacedWithLla = null, replacedReason = null) {
+            let inactive = (status === 'inactive');
+            let replaced = (status === 'replaced');
+            let indefinite = (status === 'indefinite');
+
+            let now = new Date();
+            if (status !== 'active') {
+                now.setHours(now.getHours() - (id % 24 + 1));
+            } else {
+                now.setMinutes(now.getMinutes() - (id % 60 + 1));
+            }
+
+            let pool = ['NORTH', 'SAND', 'ABA'];
+            let count = Math.floor(Math.random() * 3);
+            let selected = [];
+            let poolCopy = [...pool];
+            for (let j = 0; j < count; j++) {
+                let idx = Math.floor(Math.random() * poolCopy.length);
+                selected.push(poolCopy[idx]);
+                poolCopy.splice(idx, 1);
+            }
+
+            return {
+                num: id,
+                sensorNum,
+                expName,
+                status,
+                inactive,
+                replaced,
+                indefinite,
+                replacedWithLla,
+                replacedReason,
+                lastSeenDate: new Date(now),
+                lastSeenStr: formatDate(now),
+                lla,
+                xyz: {
+                    x: Math.floor(Math.random() * 15),
+                    y: Math.floor(Math.random() * 15),
+                    z: Math.floor(Math.random() * 15)
+                },
+                temp: (status === 'replaced' ? '--' : (12 + Math.random() * 20).toFixed(1)),
+                light: (status === 'replaced' ? '--' : Math.floor(200 + Math.random() * 800)),
+                battery: (status === 'replaced' ? '--' : 2900),
+                rh: (status === 'replaced' ? '--' : Math.floor(30 + Math.random() * 40)),
+                alert: null,
+                labels: replaced ? [] : [...selected],
+                thresholds: {
+                    tempMin: null, tempMax: null,
+                    rhMin: null, rhMax: null,
+                    lightMin: null, lightMax: null,
+                    timeStart: null, timeEnd: null
+                }
+            };
         }
 
         function formatDate(d) {
@@ -2319,11 +2832,24 @@
         function pad(n) { return String(n).padStart(2, '0'); }
 
         function renderGrid() {
-            // Check alerts before filtering/sorting
+            if (sensors.length === 0) {
+                // Empty state for when no experiments are found on the PI
+                gridContainer.innerHTML = `
+                    <div id="empty-dashboard-state" style="grid-column: 1/-1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 20px; background: rgba(255,255,255,0.4); border: 2px dashed #b8d1c8; border-radius: 20px; cursor: pointer; transition: all 0.2s;" onclick="openExpModal('start-1')" onmouseover="this.style.backgroundColor='#ffffff'; this.style.borderColor='#82c3ab';" onmouseout="this.style.backgroundColor='rgba(255,255,255,0.4)'; this.style.borderColor='#b8d1c8';">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; background: #82c3ab; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: normal; margin-bottom: 20px; line-height: 1;">+</div>
+                        <h3 style="color: #333f48; font-size: 1.4rem;">No experiments found</h3>
+                        <p style="color: #4a555e; margin-top: 8px; font-weight: 500;">Click to create a new experiment</p>
+                    </div>
+                `;
+                const statsElem = document.getElementById('active-stats');
+                if (statsElem) statsElem.textContent = `0/0`;
+                return;
+            }
+
             checkAllSensorAlerts();
 
-            // Filter then Sort
-            let filtered = sensors.filter(s => {
+            // 1. Initial Filtering (Status, Labels)
+            let baseFiltered = sensors.filter(s => {
                 const statusOk = activeFilters[s.status];
                 let labelOk = false;
                 if (s.labels && s.labels.length > 0) {
@@ -2333,80 +2859,165 @@
                 }
                 return statusOk && labelOk;
             });
-            let sorted = [...filtered];
 
-            const asc = sortAsc[currentSort];
+            // 2. Experiment Filtering
+            let filtered = baseFiltered;
+            if (window.allExpMode && window.currentExpFilter !== 'ALL') {
+                // Always include indefinite sensors, even if they belong to a different expName
+                filtered = baseFiltered.filter(s => s.expName === window.currentExpFilter || s.status === 'indefinite');
+            }
 
+            // 3. Separate Indefinite from others
+            const indefiniteSensors = filtered.filter(s => s.status === 'indefinite');
+            const mainSensors = filtered.filter(s => s.status !== 'indefinite');
 
-            sorted.sort((a, b) => {
-                let v;
-                const statusOrder = { 'active': 0, 'inactive': 1, 'indefinite': 2, 'replaced': 3 };
-                if (currentSort === 'name') v = a.num - b.num;
-                else if (currentSort === 'lastseen') v = a.lastSeenDate - b.lastSeenDate;
-                else if (currentSort === 'status') v = statusOrder[a.status] - statusOrder[b.status];
-                else if (currentSort === 'lla') v = (a.xyz.x - b.xyz.x) || (a.xyz.y - b.xyz.y) || (a.xyz.z - b.xyz.z);
-                else if (currentSort === 'label') {
-                    const lA = (a.labels && a.labels[0]) || '';
-                    const lB = (b.labels && b.labels[0]) || '';
-                    v = lA.localeCompare(lB);
-                }
-                return asc ? v : (typeof v === 'number' ? -v : -v);
-            });
+            // 4. Render main groups
+            const expsInView = window.allExpMode && window.currentExpFilter === 'ALL'
+                ? (piExperiments[currentLoadedMac] || [])
+                : [window.currentExpFilter || 'PEPPER'];
 
             let html = '';
             let activeCount = 0;
-            sorted.forEach(s => {
-                if (s.status === 'active') activeCount++;
+            let totalCount = 0;
 
-                let cardClass = s.status;
-                let pillClass = 'online';
-                let pillText = 'ACTIVE';
-                let pillIcon = iconOnline;
+            expsInView.forEach((expName, idx) => {
+                // If filtering by specific exp, skip others
+                if (window.allExpMode && window.currentExpFilter !== 'ALL' && expName !== window.currentExpFilter) return;
 
-                if (s.status === 'inactive') {
-                    pillClass = 'offline';
-                    pillText = 'INACTIVE';
-                    pillIcon = iconOffline;
-                } else if (s.status === 'replaced') {
-                    pillClass = 'replaced';
-                    pillText = 'REPLACED';
-                    pillIcon = `<svg viewBox="0 0 24 24"><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.41 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM5 16l4-4H6c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.59 4 12 4c-4.42 0-8 3.58-8 8H1L5 16z"/></svg>`;
-                } else if (s.status === 'indefinite') {
-                    pillClass = 'indefinite';
-                    pillText = 'INDEFINITE';
-                    pillIcon = `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>`;
+                const expSensors = mainSensors.filter(s => s.expName === expName);
+                if (expSensors.length === 0 && !window.allExpMode) return;
+
+                // Section header if multi-exp
+                if (window.allExpMode && window.currentExpFilter === 'ALL') {
+                    if (idx > 0 && expSensors.length > 0) {
+                        html += `<div style="grid-column: 1/-1; height: 1px; border-top: 3px dashed #cbd5e1; margin: 30px 0 20px 0;"></div>`;
+                    }
+                    if (expSensors.length > 0) {
+                        html += `<div class="exp-section-title" style="grid-column: 1/-1; padding: 10px 0; font-size: 1.4rem; font-weight: 800; color: #333f48; margin-bottom: 20px;">${expName} EXPERIMENT</div>`;
+                    }
                 }
 
-                let infoHtml = '';
-                if (s.status === 'replaced') {
-                    infoHtml = `
-                        <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
-                        <div class="lla-wrap" style="color:#ea580c; font-weight:700">Replaced with: <span>${s.replacedWithLla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.replacedWithLla}')" title="Copy New LLA">${iconCopy}</button></div>
-                    `;
-                } else {
-                    // active, inactive, or indefinite
-                    infoHtml = `
-                        <div>last seen: <span class="time-val">${s.lastSeenStr}</span></div>
-                        <div class="lla-wrap">LABELS: <span style="text-transform:none;">${s.labels && s.labels.length ? s.labels.join(', ') : 'N/A'}</span></div>
-                        <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')" title="Copy LLA">${iconCopy}</button></div>
-                    `;
+                expSensors.forEach(s => {
+                    if (s.status === 'active') activeCount++;
+                    totalCount++;
+                    html += renderSensorCard(s, false);
+                });
+            });
+
+            let createExpBtnHtml = '';
+
+            // Build central create exp button if on ALL view
+            if (currentLoadedMac !== '101' && window.currentExpFilter === 'ALL') {
+                createExpBtnHtml = `
+                <div style="grid-column: 1/-1; display: flex; justify-content: center; margin: 40px 0;">
+                    <button class="edit-btn hover-scale" onclick="openExpModal('start-1')" style="background:#82c3ab; color:#333f48; border:none; padding:18px 40px; font-size:1.3rem; border-radius:35px; font-weight:900; box-shadow: 0 8px 25px rgba(130, 195, 171, 0.4);">
+                        + CREATE NEW EXP
+                    </button>
+                </div>`;
+            }
+
+            html += createExpBtnHtml;
+
+            // 5. Render Indefinite sensors at the absolute bottom
+            if (indefiniteSensors.length > 0) {
+                if (window.allExpMode && window.currentExpFilter === 'ALL' && mainSensors.length > 0) {
+                    html += `<div style="grid-column: 1/-1; height: 1px; border-top: 3px dashed #cbd5e1; margin: 30px 0 20px 0;"></div>`;
+                }
+
+                let targetExpForAssign = null;
+                if (!window.allExpMode && window.currentExp) targetExpForAssign = window.currentExp;
+                else if (window.allExpMode && window.currentExpFilter !== 'ALL') targetExpForAssign = window.currentExpFilter;
+
+                let assignBtnHtml = '';
+                let isSelectableMode = false;
+
+                // Restrict assignment: Only allow in PI 202 (or non-101)
+                if (currentLoadedMac !== '101') {
+                    if (targetExpForAssign) {
+                        isSelectableMode = true;
+                        assignBtnHtml = `
+                            <div style="display:flex; gap:10px;">
+                                <button class="small-action-btn" onclick="selectAllIndefinite()" style="background:#eef2f0; color:#333f48; border:1px solid #b8d1c8; padding:8px 16px; height:auto; border-radius:20px;">Select All</button>
+                                <button class="small-action-btn" onclick="assignSelectedToExp('${targetExpForAssign}')" style="background:#374850; color:#fff; border:none; padding:8px 16px; height:auto; border-radius:20px;">Assign Selected to ${targetExpForAssign}</button>
+                            </div>
+                        `;
+                    }
                 }
 
                 html += `
-                    <div class="card ${cardClass}" ondblclick="showSensorDetails(${s.num})">
-                        <div class="card-header">
-                            <h3 class="sensor-name">Sensor ${s.sensorNum}</h3>
-                            ${s.alert ? `<div class="card-alert-badge" title="${s.alert}">⚠️</div>` : ''}
-                            <div class="status-pill ${pillClass}">${pillIcon}${pillText}</div>
-                        </div>
-                        <div class="sensor-info">
-                            ${infoHtml}
-                        </div>
-                    </div>`;
-            });
+                <div style="grid-column: 1/-1; display: flex; justify-content: space-between; align-items: center; margin: 20px 0 15px 0;">
+                    <div class="exp-section-title" style="font-size: 1.4rem; font-weight: 800; color: #64748b; opacity: 0.8; margin: 0;">INDEFINITE SENSORS</div>
+                    ${assignBtnHtml}
+                </div>`;
+
+                indefiniteSensors.forEach(s => {
+                    html += renderSensorCard(s, isSelectableMode);
+                });
+            }
 
             gridContainer.innerHTML = html;
-            document.getElementById('active-stats').textContent = activeCount + '/' + totalSensors;
+
+            // Update stats
+            const statsElem = document.getElementById('active-stats');
+            if (statsElem) {
+                statsElem.textContent = `${activeCount}/${totalCount}`;
+            }
+        }
+
+        function renderSensorCard(s, isSelectableMode = false) {
+            let cardClass = s.status;
+            let pillClass = 'online';
+            let pillText = 'ACTIVE';
+            let pillIcon = iconOnline;
+
+            if (s.status === 'inactive') {
+                pillClass = 'offline'; pillText = 'INACTIVE'; pillIcon = iconOffline;
+            } else if (s.status === 'replaced') {
+                pillClass = 'replaced'; pillText = 'REPLACED';
+                pillIcon = `<svg viewBox="0 0 24 24"><path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.41 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM5 16l4-4H6c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.59 4 12 4c-4.42 0-8 3.58-8 8H1L5 16z"/></svg>`;
+            } else if (s.status === 'indefinite') {
+                pillClass = 'indefinite'; pillText = 'INDEFINITE'; pillIcon = iconOffline;
+            }
+
+            let infoHtml = '';
+            let labelsRow = '';
+
+            if (s.status === 'replaced') {
+                infoHtml = `
+                    <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')">${iconCopy}</button></div>
+                    <div class="lla-wrap" style="color:#ea580c; font-weight:700">Replaced with: <span>${s.replacedWithLla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.replacedWithLla}')">${iconCopy}</button></div>
+                `;
+            } else {
+                if (s.labels && s.labels.length) {
+                    labelsRow = `<div class="labels-container" style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.05);">${s.labels.map(l => `<span class="label-pill">${l}</span>`).join('')}</div>`;
+                }
+
+                infoHtml = `
+                    <div>last seen: <span class="time-val">${s.lastSeenStr}</span></div>
+                    ${window.allExpMode && s.status !== 'indefinite' ? `<div class="lla-wrap">EXP: <span style="color:#82c3ab; font-weight:700">${s.expName}</span></div>` : ''}
+                    <div class="lla-wrap">LLA: <span>${s.lla}</span> <button class="copy-btn" onclick="copyWithFeedback('${s.lla}')">${iconCopy}</button></div>
+                `;
+            }
+
+            let checkboxHtml = '';
+            if (isSelectableMode && s.status === 'indefinite') {
+                checkboxHtml = `
+                    <div class="card-checkbox-overlay" style="position: absolute; top: 15px; right: 15px; z-index: 2;">
+                        <input type="checkbox" class="assign-checkbox" value="${s.num}" style="width: 22px; height: 22px; accent-color: #82c3ab; cursor: pointer;" onclick="event.stopPropagation();">
+                    </div>
+                `;
+            }
+
+            return `
+                <div id="sensor-card-${s.num}" class="card ${cardClass}" ondblclick="showSensorDetails(${s.num})" style="position:relative; display:flex; flex-direction:column;">
+                    ${checkboxHtml}
+                    <div class="card-header">
+                        <h3 class="sensor-name">Sensor ${s.sensorNum}</h3>
+                        <div class="status-pill ${pillClass}">${pillIcon}${pillText}</div>
+                    </div>
+                    <div class="sensor-info" style="flex:1;">${infoHtml}</div>
+                    ${labelsRow}
+                </div>`;
         }
 
         // ── Sort controls ─────────────────────────────────────────────
@@ -2566,48 +3177,46 @@
 
         function applyNewLabel() {
             const labelName = document.getElementById('new-label-input').value.trim().toUpperCase();
-            if (!labelName) {
-                alert('Please enter a label name.');
-                return;
-            }
-
             const checkedBoxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]:checked');
-            if (checkedBoxes.length === 0) {
-                alert('Please select at least one sensor.');
-                return;
-            }
 
-            checkedBoxes.forEach(cb => {
-                const sensorNum = parseInt(cb.value);
-                const sensor = sensors.find(s => s.num === sensorNum);
-                if (sensor) {
-                    if (!sensor.labels.includes(labelName)) {
-                        sensor.labels.push(labelName);
+            if (labelName && checkedBoxes.length > 0) {
+                checkedBoxes.forEach(cb => {
+                    const sensorNum = parseInt(cb.value);
+                    const sensor = sensors.find(s => s.num === sensorNum);
+                    if (sensor) {
+                        if (!sensor.labels.includes(labelName)) {
+                            sensor.labels.push(labelName);
+                        }
                     }
-                }
-            });
+                });
 
-            // Ensure our global state knows about this label
-            if (!activeLabelFilters.hasOwnProperty(labelName)) {
-                activeLabelFilters[labelName] = true;
+                // Ensure our global state knows about this label
+                if (!activeLabelFilters.hasOwnProperty(labelName)) {
+                    activeLabelFilters[labelName] = true;
+                }
+                renderLabelFilterUI();
             }
 
-            renderLabelFilterUI();
             renderGrid();
             closeLabelsModal();
-            alert(`Label "${labelName}" applied to ${checkedBoxes.length} sensors.`);
+            markChecklistDone('labels');
+            if (labelName && checkedBoxes.length > 0) {
+                showCustomAlert(`Label "${labelName}" applied to ${checkedBoxes.length} sensors.`);
+            } else {
+                showToast(); // Just provide a small feedback for clicking Apply
+            }
         }
 
         function removeNewLabel() {
             const labelName = document.getElementById('new-label-input').value.trim().toUpperCase();
             if (!labelName) {
-                alert('Please enter a label name to remove.');
+                showCustomAlert('Please enter a label name to remove.');
                 return;
             }
 
             const checkedBoxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]:checked');
             if (checkedBoxes.length === 0) {
-                alert('Please select at least one sensor.');
+                showCustomAlert('Please select at least one sensor.');
                 return;
             }
 
@@ -2622,7 +3231,7 @@
             });
 
             if (changeCount === 0) {
-                alert(`The label "${labelName}" was not found on the selected sensors.`);
+                showCustomAlert(`The label "${labelName}" was not found on the selected sensors.`);
                 return;
             }
 
@@ -2630,7 +3239,29 @@
             renderLabelFilterUI();
             renderGrid();
             closeLabelsModal();
-            alert(`Label "${labelName}" removed from ${changeCount} sensors.`);
+            showCustomAlert(`Label "${labelName}" removed from ${changeCount} sensors.`);
+        }
+
+        function clearAllLabels() {
+            const checkedBoxes = document.querySelectorAll('#labels-sensor-list input[type="checkbox"]:checked');
+            if (checkedBoxes.length === 0) {
+                showCustomAlert('Please select at least one sensor.');
+                return;
+            }
+
+            checkedBoxes.forEach(cb => {
+                const sensorNum = parseInt(cb.value);
+                const sensor = sensors.find(s => s.num === sensorNum);
+                if (sensor) {
+                    sensor.labels = [];
+                }
+            });
+
+            cleanupUnusedLabels();
+            renderLabelFilterUI();
+            renderGrid();
+            closeLabelsModal();
+            showCustomAlert(`All labels cleared from ${checkedBoxes.length} sensors.`);
         }
 
         // ── Alerts Management Logic ──────────────────────────────────
@@ -2645,6 +3276,12 @@
             document.getElementById('alert-rh-max').value = '';
             document.getElementById('alert-light-min').value = '';
             document.getElementById('alert-light-max').value = '';
+            document.getElementById('alert-temp-time-start').value = '';
+            document.getElementById('alert-temp-time-end').value = '';
+            document.getElementById('alert-rh-time-start').value = '';
+            document.getElementById('alert-rh-time-end').value = '';
+            document.getElementById('alert-light-time-start').value = '';
+            document.getElementById('alert-light-time-end').value = '';
             document.getElementById('alerts-sensor-search').value = '';
 
             switchAlertsTab('assign');
@@ -2672,7 +3309,8 @@
 
                 let hint = '';
                 const h = s.thresholds;
-                if (h && (h.tempMin !== null || h.tempMax !== null || h.rhMin !== null || h.rhMax !== null || h.lightMin !== null || h.lightMax !== null)) {
+                if (h && (h.tempMin !== null || h.tempMax !== null || h.rhMin !== null || h.rhMax !== null || h.lightMin !== null || h.lightMax !== null ||
+                    h.tempTimeStart || h.rhTimeStart || h.lightTimeStart)) {
                     hint = '<span style="font-size:0.7rem; color:#10b981; margin-left:5px;">(has rules)</span>';
                 }
 
@@ -2800,12 +3438,12 @@
                 const h = s.thresholds || {};
                 let rules = [];
 
-                if (h.tempMin !== null && h.tempMin !== undefined) rules.push(`T < ${h.tempMin}°`);
-                if (h.tempMax !== null && h.tempMax !== undefined) rules.push(`T > ${h.tempMax}°`);
-                if (h.rhMin !== null && h.rhMin !== undefined) rules.push(`RH < ${h.rhMin}%`);
-                if (h.rhMax !== null && h.rhMax !== undefined) rules.push(`RH > ${h.rhMax}%`);
-                if (h.lightMin !== null && h.lightMin !== undefined) rules.push(`L < ${h.lightMin}`);
-                if (h.lightMax !== null && h.lightMax !== undefined) rules.push(`L > ${h.lightMax}`);
+                if (h.tempMin !== null && h.tempMin !== undefined) rules.push(`T < ${h.tempMin}°${h.tempTimeStart ? ' (' + h.tempTimeStart + '-' + h.tempTimeEnd + ')' : ''}`);
+                if (h.tempMax !== null && h.tempMax !== undefined) rules.push(`T > ${h.tempMax}°${h.tempTimeStart ? ' (' + h.tempTimeStart + '-' + h.tempTimeEnd + ')' : ''}`);
+                if (h.rhMin !== null && h.rhMin !== undefined) rules.push(`RH < ${h.rhMin}%${h.rhTimeStart ? ' (' + h.rhTimeStart + '-' + h.rhTimeEnd + ')' : ''}`);
+                if (h.rhMax !== null && h.rhMax !== undefined) rules.push(`RH > ${h.rhMax}%${h.rhTimeStart ? ' (' + h.rhTimeStart + '-' + h.rhTimeEnd + ')' : ''}`);
+                if (h.lightMin !== null && h.lightMin !== undefined) rules.push(`L < ${h.lightMin}${h.lightTimeStart ? ' (' + h.lightTimeStart + '-' + h.lightTimeEnd + ')' : ''}`);
+                if (h.lightMax !== null && h.lightMax !== undefined) rules.push(`L > ${h.lightMax}${h.lightTimeStart ? ' (' + h.lightTimeStart + '-' + h.lightTimeEnd + ')' : ''}`);
 
                 const ruleStr = rules.join(', ').toLowerCase();
                 const sensorNumStr = s.sensorNum ? String(s.sensorNum).toLowerCase() : '';
@@ -2846,9 +3484,37 @@
             const lMin = document.getElementById('alert-light-min').value !== '' ? parseFloat(document.getElementById('alert-light-min').value) : null;
             const lMax = document.getElementById('alert-light-max').value !== '' ? parseFloat(document.getElementById('alert-light-max').value) : null;
 
+            const tempTimeStart = document.getElementById('alert-temp-time-start').value;
+            const tempTimeEnd = document.getElementById('alert-temp-time-end').value;
+            const rhTimeStart = document.getElementById('alert-rh-time-start').value;
+            const rhTimeEnd = document.getElementById('alert-rh-time-end').value;
+            const lightTimeStart = document.getElementById('alert-light-time-start').value;
+            const lightTimeEnd = document.getElementById('alert-light-time-end').value;
+
+            const checkedBoxes = document.querySelectorAll('#alerts-sensor-list input[type="checkbox"]:checked');
+
+            checkedBoxes.forEach(cb => {
+                const sensorNum = parseInt(cb.value);
+                const sensor = sensors.find(s => s.num === sensorNum);
+                if (sensor) {
+                    sensor.thresholds = {
+                        tempMin: tMin, tempMax: tMax, tempTimeStart: tempTimeStart || null, tempTimeEnd: tempTimeEnd || null,
+                        rhMin: rMin, rhMax: rMax, rhTimeStart: rhTimeStart || null, rhTimeEnd: rhTimeEnd || null,
+                        lightMin: lMin, lightMax: lMax, lightTimeStart: lightTimeStart || null, lightTimeEnd: lightTimeEnd || null
+                    };
+                }
+            });
+
+            renderGrid();
+            closeAlertsModal();
+            markChecklistDone('alerts');
+            showCustomAlert(`Thresholds applied to ${checkedBoxes.length} sensors.`);
+        }
+
+        function clearAlertSettings() {
             const checkedBoxes = document.querySelectorAll('#alerts-sensor-list input[type="checkbox"]:checked');
             if (checkedBoxes.length === 0) {
-                alert('Please select at least one sensor to apply these thresholds to.');
+                showCustomAlert('Please select at least one sensor to remove alerts.');
                 return;
             }
 
@@ -2857,16 +3523,17 @@
                 const sensor = sensors.find(s => s.num === sensorNum);
                 if (sensor) {
                     sensor.thresholds = {
-                        tempMin: tMin, tempMax: tMax,
-                        rhMin: rMin, rhMax: rMax,
-                        lightMin: lMin, lightMax: lMax
+                        tempMin: null, tempMax: null, tempTimeStart: null, tempTimeEnd: null,
+                        rhMin: null, rhMax: null, rhTimeStart: null, rhTimeEnd: null,
+                        lightMin: null, lightMax: null, lightTimeStart: null, lightTimeEnd: null
                     };
+                    sensor.alert = null;
                 }
             });
 
             renderGrid();
             closeAlertsModal();
-            alert(`Thresholds applied to ${checkedBoxes.length} sensors.`);
+            showCustomAlert(`Alerts removed from ${checkedBoxes.length} sensors.`);
         }
 
         function checkAllSensorAlerts() {
@@ -2884,14 +3551,41 @@
 
                 if (!h) return;
 
-                if (h.tempMin !== null && t < h.tempMin) activeAlerts.push(`Temp < ${h.tempMin}°`);
-                if (h.tempMax !== null && t > h.tempMax) activeAlerts.push(`Temp > ${h.tempMax}°`);
+                function isTimeInRange(start, end) {
+                    if (!start || !end) return true;
+                    const now = new Date();
+                    const currentTime = now.getHours() * 60 + now.getMinutes();
+                    const startTime = parseInt(start.split(':')[0]) * 60 + parseInt(start.split(':')[1]);
+                    const endTime = parseInt(end.split(':')[0]) * 60 + parseInt(end.split(':')[1]);
 
-                if (h.rhMin !== null && r < h.rhMin) activeAlerts.push(`RH < ${h.rhMin}%`);
-                if (h.rhMax !== null && r > h.rhMax) activeAlerts.push(`RH > ${h.rhMax}%`);
+                    if (startTime <= endTime) {
+                        return currentTime >= startTime && currentTime <= endTime;
+                    } else {
+                        // Ranges over midnight
+                        return currentTime >= startTime || currentTime <= endTime;
+                    }
+                }
 
-                if (h.lightMin !== null && l < h.lightMin) activeAlerts.push(`Light < ${h.lightMin} Lux`);
-                if (h.lightMax !== null && l > h.lightMax) activeAlerts.push(`Light > ${h.lightMax} Lux`);
+                if (h.tempMin !== null && t < h.tempMin && isTimeInRange(h.tempTimeStart, h.tempTimeEnd)) {
+                    activeAlerts.push(`Temp < ${h.tempMin}°${h.tempTimeStart ? ' (' + h.tempTimeStart + '-' + h.tempTimeEnd + ')' : ''}`);
+                }
+                if (h.tempMax !== null && t > h.tempMax && isTimeInRange(h.tempTimeStart, h.tempTimeEnd)) {
+                    activeAlerts.push(`Temp > ${h.tempMax}°${h.tempTimeStart ? ' (' + h.tempTimeStart + '-' + h.tempTimeEnd + ')' : ''}`);
+                }
+
+                if (h.rhMin !== null && r < h.rhMin && isTimeInRange(h.rhTimeStart, h.rhTimeEnd)) {
+                    activeAlerts.push(`RH < ${h.rhMin}%${h.rhTimeStart ? ' (' + h.rhTimeStart + '-' + h.rhTimeEnd + ')' : ''}`);
+                }
+                if (h.rhMax !== null && r > h.rhMax && isTimeInRange(h.rhTimeStart, h.rhTimeEnd)) {
+                    activeAlerts.push(`RH > ${h.rhMax}%${h.rhTimeStart ? ' (' + h.rhTimeStart + '-' + h.rhTimeEnd + ')' : ''}`);
+                }
+
+                if (h.lightMin !== null && l < h.lightMin && isTimeInRange(h.lightTimeStart, h.lightTimeEnd)) {
+                    activeAlerts.push(`Light < ${h.lightMin}${h.lightTimeStart ? ' (' + h.lightTimeStart + '-' + h.lightTimeEnd + ')' : ''}`);
+                }
+                if (h.lightMax !== null && l > h.lightMax && isTimeInRange(h.lightTimeStart, h.lightTimeEnd)) {
+                    activeAlerts.push(`Light > ${h.lightMax}${h.lightTimeStart ? ' (' + h.lightTimeStart + '-' + h.lightTimeEnd + ')' : ''}`);
+                }
 
                 s.alert = activeAlerts.length > 0 ? activeAlerts.join(', ') : null;
             });
@@ -3051,7 +3745,7 @@
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Label</div>
-                        <div class="detail-value">${s.label}</div>
+                        <div class="detail-value">${s.label || 'N/A'}</div>
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Light</div>
@@ -3071,8 +3765,21 @@
                     </div>
                     <div class="detail-item">
                         <div class="detail-label">Coordinates</div>
-                        <div class="detail-value">X:${s.xyz.x} Y:${s.xyz.y} Z:${s.xyz.z}</div>
+                        <div class="detail-value">X:${s.xyz.x ?? 'NUL'} Y:${s.xyz.y ?? 'NUL'} Z:${s.xyz.z ?? 'NUL'}</div>
                     </div>
+
+                    ${s.status === 'replaced' ? `
+                    <div style="grid-column: span 2; margin-top:10px; padding:15px; background:rgba(234, 88, 12, 0.05); border:1px dashed rgba(234, 88, 12, 0.2); border-radius:10px;">
+                        <div class="detail-label" style="color:#ea580c; font-weight:800; margin-bottom:8px;">Replacement Details</div>
+                        <div style="font-size:0.9rem; color:#334155; margin-bottom:5px;">
+                            <strong>Reason:</strong> ${s.replacedReason || 'Historical Maintenance'}
+                        </div>
+                        <div style="font-size:0.9rem; color:#334155;">
+                            <strong>New Unit ID:</strong> ${s.replacedWithLla || 'Unknown'}
+                        </div>
+                    </div>
+                    ` : ''}
+
                     <div class="alerts-section">
                         <div class="detail-label" style="margin-bottom:8px">Active Alerts</div>
                         ${alertsHtml}
@@ -3210,26 +3917,54 @@
             isEditMode = false;
         }
 
+        let pingToastTimeout;
+
         function pingTest() {
-            const cards = document.querySelectorAll('.card');
-            if (cards.length === 0) return;
+            // Get currently visible cards 
+            const visibleCards = Array.from(document.querySelectorAll('.card[id^="sensor-card-"]'));
+            if (visibleCards.length === 0) {
+                showCustomAlert('No sensors currently visible to ping.');
+                return;
+            }
 
-            // Pick a random card
-            const idx = Math.floor(Math.random() * cards.length);
-            const target = cards[idx];
+            // Pick a random visible card
+            const idx = Math.floor(Math.random() * visibleCards.length);
+            const targetCard = visibleCards[idx];
 
-            // Remove the class briefly so it redraws if clicked twice
-            target.classList.remove('pinging');
-            // Force browser reflow to apply the reset
-            void target.offsetWidth;
+            // Extract sensor number from ID and find sensor data
+            const sensorNumVal = targetCard.id.replace('sensor-card-', '');
+            const sensor = sensors.find(s => s.num == sensorNumVal);
 
-            // Add pinging class (triggers CSS animation: blink twice)
-            target.classList.add('pinging');
+            if (!sensor) return;
 
-            // Remove after animation completes (1.0s * 2 blinks)
+            // Trigger animation
+            targetCard.classList.remove('pinging');
+            void targetCard.offsetWidth; // trigger reflow
+            targetCard.classList.add('pinging');
+
+            // Remove pinging class after animation (1.5s * 3 iterations = 4500ms)
             setTimeout(() => {
-                target.classList.remove('pinging');
-            }, 2000);
+                targetCard.classList.remove('pinging');
+            }, 4500);
+
+            // Populate and show toast
+            const toast = document.getElementById('ping-toast');
+            document.getElementById('ping-toast-msg').innerHTML = `
+                <div style="font-size: 0.95rem; color: #ffffff;">Sensor ${sensor.sensorNum}</div>
+                <div style="font-size: 0.75rem; color: #a78bfa; font-family: monospace;">${sensor.lla}</div>
+            `;
+
+            // Scroll behavior for the "Find" button
+            document.getElementById('ping-toast-scroll-btn').onclick = () => {
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            };
+
+            toast.classList.add('show');
+
+            clearTimeout(pingToastTimeout);
+            pingToastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000); // Hide toast after 5 seconds
         }
 
         // ── EXP Modal Logic ──────────────────────────────────────────
@@ -3252,25 +3987,13 @@
 
             // reset fields
             if (viewId === 'start-1') {
-                document.getElementById('exp-start-name').value = window.currentExp || '';
+                document.getElementById('exp-start-name').value = '';
                 document.getElementById('exp-start-loc').value = document.getElementById('header-location')?.innerText || '';
 
                 // Show/hide home vs standard buttons
                 const isHome = homePage.classList.contains('active');
-                document.getElementById('exp-start-btns-home').style.display = isHome ? 'flex' : 'none';
-                document.getElementById('exp-start-btns-standard').style.display = isHome ? 'none' : 'flex';
-            } else if (viewId === 'start-2') {
-                document.getElementById('exp-start-verify-name').value = '';
-                document.getElementById('exp-start-success').style.display = 'none';
-                document.getElementById('exp-start-confirm-btn').style.display = 'flex';
-                document.getElementById('exp-sensors-list').classList.remove('open');
-
-                // popuplate sensors list
-                let activeCount = sensors.filter(s => !s.inactive).length;
-                document.getElementById('exp-start-sensors-count').innerText = `Number of Sensors: ${activeCount}`;
-
-                let listHtml = sensors.filter(s => !s.inactive).map(s => `<div>Sensor ${s.sensorNum} (${s.label})</div>`).join('');
-                document.getElementById('exp-sensors-list').innerHTML = listHtml || 'No active sensors';
+                document.getElementById('exp-start-btns-home').style.display = 'none'; // Not needed anymore based on prompt
+                document.getElementById('exp-start-btns-standard').style.display = 'flex';
             } else if (viewId === 'end-1') {
                 document.getElementById('exp-end-name-1').value = '';
                 document.getElementById('exp-end-name-2').value = '';
@@ -3278,31 +4001,256 @@
         }
 
         function submitExpStartStep1() {
-            pendingExpName = document.getElementById('exp-start-name').value.trim();
+            pendingExpName = document.getElementById('exp-start-name').value.trim().toUpperCase();
             pendingExpLoc = document.getElementById('exp-start-loc').value.trim();
 
             if (!pendingExpName || !pendingExpLoc) {
-                alert('Please enter both Name and Location.');
-                return;
-            }
-            goToExpView('start-2');
-        }
-
-        function submitExpStartHome() {
-            pendingExpName = document.getElementById('exp-start-name').value.trim();
-            pendingExpLoc = document.getElementById('exp-start-loc').value.trim();
-
-            if (!pendingExpName || !pendingExpLoc) {
-                alert('Please enter both Name and Location.');
+                showCustomAlert('Please enter both Name and Location.');
                 return;
             }
 
-            // Finish immediately
+            const mac = document.getElementById('header-mac')?.innerText || document.getElementById('sel-mac').value || '101';
+
+            if (!piExperiments[mac]) piExperiments[mac] = [];
+            if (!piExperiments[mac].includes(pendingExpName)) {
+                piExperiments[mac].push(pendingExpName);
+            }
+
+            // Proceed immediately to Dashboard 
             window.currentExp = pendingExpName;
-            const mac = document.getElementById('sel-mac').value || '101';
+            window.allExpMode = true; // Always show multi-tab style
+            window.currentExpFilter = pendingExpName;
 
             closeExpModal();
             showDashboard(mac, pendingExpName, pendingExpLoc.toUpperCase());
+        }
+
+        function selectAllIndefinite() {
+            const checkboxes = document.querySelectorAll('.assign-checkbox');
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allChecked);
+        }
+
+        function assignSelectedToExp(targetExp) {
+            if (!targetExp) return;
+
+            const checkboxes = document.querySelectorAll('.assign-checkbox:checked');
+            if (checkboxes.length === 0) {
+                showCustomAlert('Please select at least one sensor to assign.');
+                return;
+            }
+
+            const selectedIds = Array.from(checkboxes).map(cb => parseInt(cb.value));
+
+            let count = 0;
+            sensors.forEach(s => {
+                if (s.status === 'indefinite' && selectedIds.includes(s.num)) {
+                    s.status = 'active';
+                    s.indefinite = false;
+                    s.expName = targetExp;
+                    s.lastSeenDate = new Date();
+                    s.lastSeenStr = 'Just Now';
+                    count++;
+                }
+            });
+
+            if (count > 0) {
+                showCustomAlert(`Successfully assigned ${count} sensors to ${targetExp}.`);
+
+                // Show Setup Checklist on the right
+                document.getElementById('setup-checklist').classList.add('active');
+
+                // Rerender and sync header
+                renderGrid();
+                updateHeaderMeta(currentLoadedMac, targetExp, document.getElementById('header-location')?.innerText || 'GREENHOUSE');
+            }
+        }
+
+        // ── Batch Modals (Names & Coordinates) ───────────────────────
+        function openBatchNamesModal() {
+            const targetExp = window.currentExpFilter !== 'ALL' ? window.currentExpFilter : window.currentExp;
+            if (!targetExp) {
+                showCustomAlert('Please select a specific experiment first.');
+                return;
+            }
+
+            const expSensors = sensors.filter(s => s.expName === targetExp && s.status !== 'indefinite');
+            const list = document.getElementById('batch-names-list');
+
+            if (expSensors.length === 0) {
+                list.innerHTML = `<div style="color:#64748b; padding: 20px 0;">No assigned sensors found in ${targetExp}.</div>`;
+            } else {
+                list.innerHTML = expSensors.map(s => `
+                    <div style="display:flex; gap:15px; align-items:center; margin-bottom:12px; background:#f4f8f5; padding:10px 15px; border-radius:8px; border:1px solid #d1e2da;">
+                        <span style="width: 130px; font-size:0.85rem; font-family:monospace; color:#4a555e; font-weight:700;">ID: ${s.lla}</span>
+                        <input type="text" class="modal-input batch-name-input" data-num="${s.num}" value="${s.sensorNum}" style="flex:1; border-color:#b8d1c8;">
+                    </div>
+                `).join('');
+            }
+            document.getElementById('names-modal').classList.add('active');
+        }
+
+        function closeNamesModal() {
+            document.getElementById('names-modal').classList.remove('active');
+        }
+
+        function saveBatchNames() {
+            const inputs = document.querySelectorAll('.batch-name-input');
+            let updated = 0;
+            inputs.forEach(input => {
+                const num = parseInt(input.getAttribute('data-num'));
+                const sensor = sensors.find(s => s.num === num);
+                if (sensor) {
+                    sensor.sensorNum = input.value.trim() || sensor.sensorNum;
+                    updated++;
+                }
+            });
+            renderGrid();
+            closeNamesModal();
+            if (updated > 0) {
+                markChecklistDone('names');
+                showToast();
+            }
+        }
+
+        function openBatchCoordsModal() {
+            const targetExp = window.currentExpFilter !== 'ALL' ? window.currentExpFilter : window.currentExp;
+            if (!targetExp) {
+                showCustomAlert('Please select a specific experiment first.');
+                return;
+            }
+
+            const expSensors = sensors.filter(s => s.expName === targetExp && s.status !== 'indefinite');
+            const list = document.getElementById('batch-coords-list');
+
+            if (expSensors.length === 0) {
+                list.innerHTML = `<div style="color:#64748b; padding: 20px 0;">No assigned sensors found in ${targetExp}.</div>`;
+            } else {
+                list.innerHTML = expSensors.map(s => {
+                    const xVal = s.xyz.x === null ? '' : s.xyz.x;
+                    const yVal = s.xyz.y === null ? '' : s.xyz.y;
+                    const zVal = s.xyz.z === null ? '' : s.xyz.z;
+                    return `
+                    <div style="display:flex; gap:10px; align-items:center; margin-bottom:12px; background:#f4f8f5; padding:10px; border-radius:8px; border:1px solid #d1e2da;">
+                        <span style="flex:1; font-size:0.9rem; font-weight:800; color:#333f48;">Sensor ${s.sensorNum}</span>
+                        <input type="text" class="modal-input batch-coord-x" data-num="${s.num}" value="${xVal}" placeholder="NUL" style="width:70px; border-color:#b8d1c8; text-align:center;">
+                        <input type="text" class="modal-input batch-coord-y" data-num="${s.num}" value="${yVal}" placeholder="NUL" style="width:70px; border-color:#b8d1c8; text-align:center;">
+                        <input type="text" class="modal-input batch-coord-z" data-num="${s.num}" value="${zVal}" placeholder="NUL" style="width:70px; border-color:#b8d1c8; text-align:center;">
+                    </div>
+                `}).join('');
+            }
+            document.getElementById('coords-modal').classList.add('active');
+        }
+
+        function closeCoordsModal() {
+            document.getElementById('coords-modal').classList.remove('active');
+        }
+
+        function handleCoordChange(select) {
+            // No-op: value is read on save
+        }
+
+        function saveBatchCoords() {
+            const rowContainers = document.querySelectorAll('#batch-coords-list > div');
+            let updated = 0;
+            rowContainers.forEach(row => {
+                const xInput = row.querySelector('.batch-coord-x');
+                const yInput = row.querySelector('.batch-coord-y');
+                const zInput = row.querySelector('.batch-coord-z');
+                if (xInput && yInput && zInput) {
+                    const num = parseInt(xInput.getAttribute('data-num'));
+                    const sensor = sensors.find(s => s.num === num);
+                    if (sensor) {
+                        const vx = xInput.value.trim().toUpperCase();
+                        const vy = yInput.value.trim().toUpperCase();
+                        const vz = zInput.value.trim().toUpperCase();
+
+                        sensor.xyz.x = (vx === '' || vx === 'NUL') ? null : (parseInt(vx) || 0);
+                        sensor.xyz.y = (vy === '' || vy === 'NUL') ? null : (parseInt(vy) || 0);
+                        sensor.xyz.z = (vz === '' || vz === 'NUL') ? null : (parseInt(vz) || 0);
+                        updated++;
+                    }
+                }
+            });
+            renderGrid();
+            closeCoordsModal();
+            markChecklistDone('coords');
+            showToast();
+        }
+
+        // ── Checklist State ──────────────────────────────────────────
+        const checklistState = {
+            names: false,
+            coords: false,
+            alerts: false,
+            labels: false
+        };
+
+        function markChecklistDone(key) {
+            checklistState[key] = true;
+            updateChecklistUI();
+        }
+
+        function updateChecklistUI() {
+            const keys = ['names', 'coords', 'alerts', 'labels'];
+            keys.forEach(k => {
+                const item = document.getElementById('chk-' + k);
+                const icon = document.getElementById('chk-icon-' + k);
+                if (!item || !icon) return;
+                if (checklistState[k]) {
+                    item.classList.add('done');
+                    icon.textContent = 'V';
+                } else {
+                    item.classList.remove('done');
+                    icon.textContent = '';
+                }
+            });
+
+            const mandatoryDone = checklistState.names;
+            const btn = document.getElementById('start-exp-btn');
+            if (btn) {
+                if (mandatoryDone) btn.classList.add('visible');
+                else btn.classList.remove('visible');
+            }
+        }
+
+        // ── Verify Sensors Modal ─────────────────────────────────────
+        function openVerifySensorsModal() {
+            const targetExp = window.currentExpFilter !== 'ALL' ? window.currentExpFilter : window.currentExp;
+            const expSensors = sensors.filter(s => s.expName === targetExp && s.status !== 'indefinite' && s.status !== 'replaced');
+
+            document.getElementById('verify-sensor-count').textContent = expSensors.length;
+
+            // Reset list
+            const listEl = document.getElementById('verify-sensor-list');
+            listEl.style.display = 'none';
+            document.getElementById('verify-toggle-arrow').textContent = '▼';
+            document.getElementById('verify-toggle-btn').querySelector('span').textContent = 'Show Sensor Names';
+
+            listEl.innerHTML = expSensors.map(s =>
+                `<div style="padding:6px 8px; border-bottom:1px solid #e5e7eb; font-size:0.9rem; font-weight:600; color:#333f48;">Sensor ${s.sensorNum}</div>`
+            ).join('') || '<div style="color:#9ca3af; font-size:0.85rem;">No sensors found.</div>';
+
+            document.getElementById('verify-sensors-modal').classList.add('active');
+        }
+
+        function closeVerifySensorsModal() {
+            document.getElementById('verify-sensors-modal').classList.remove('active');
+        }
+
+        function toggleVerifySensorNames() {
+            const listEl = document.getElementById('verify-sensor-list');
+            const arrow = document.getElementById('verify-toggle-arrow');
+            const btnSpan = document.getElementById('verify-toggle-btn').querySelector('span');
+            const isOpen = listEl.style.display !== 'none';
+            listEl.style.display = isOpen ? 'none' : 'block';
+            arrow.textContent = isOpen ? '▼' : '▲';
+            btnSpan.textContent = isOpen ? 'Show Sensor Names' : 'Hide Sensor Names';
+        }
+
+        function confirmStartExp() {
+            closeVerifySensorsModal();
+            showCustomAlert('Experiment started successfully!');
         }
 
         function toggleExpSensorsList() {
@@ -3312,7 +4260,7 @@
         function submitExpStartStep2() {
             const verifyName = document.getElementById('exp-start-verify-name').value.trim();
             if (verifyName !== pendingExpName) {
-                alert('Name does not match! Please try again.');
+                showCustomAlert('Name does not match! Please try again.');
                 return;
             }
 
@@ -3349,139 +4297,161 @@
             const n2 = document.getElementById('exp-end-name-2').value.trim();
 
             if (!n1 || !n2) {
-                alert('Please enter the name twice.');
+                showCustomAlert('Please enter the name twice.');
                 return;
             }
             if (n1 !== n2) {
-                alert('Names do not match! Please try again.');
+                showCustomAlert('Names do not match! Please try again.');
                 return;
             }
 
             // Ends experiment
-            alert('Experiment ended successfully.');
+            showCustomAlert('Experiment ended successfully.');
             window.currentExp = '';
             closeExpModal();
         }
 
         // ── Sensor Switch Logic ───────────────────────────────────────
-        let availableLlas = ["1010101010", "2020202020", "3030303030", "4040404040", "5050505050"];
-
-        function updateNewLlaDisplay() {
-            const val = document.getElementById('switch-new-lla').value;
-            const wrap = document.getElementById('switch-new-lla-display-wrap');
-            const display = document.getElementById('switch-new-lla-display');
-            if (val) {
-                wrap.style.display = 'block';
-                display.innerText = val;
-            } else {
-                wrap.style.display = 'none';
-            }
-        }
+        let selectedSwapSensor = null;
 
         function openSwitchModal() {
             if (!currentModalSensor) return;
 
-            // Populate old info
-            document.getElementById('switch-old-name').innerText = `Sensor ${currentModalSensor.sensorNum}`;
-            document.getElementById('switch-old-lla').innerText = currentModalSensor.lla;
-            document.getElementById('switch-old-lla').style.userSelect = 'text';
+            // 1. Render current unit at top (detailed: LLA, Last Seen, Coords)
+            const currentContainer = document.getElementById('switch-current-unit-placeholder');
+            currentContainer.innerHTML = renderModalSensorCard(currentModalSensor, false, 'current');
 
-            // Show label if exists
-            const labelWrap = document.getElementById('switch-old-label-wrap');
-            if (currentModalSensor.label) {
-                labelWrap.style.display = 'block';
-                document.getElementById('switch-old-label').innerText = currentModalSensor.label;
+            // 2. Render available indefinite units at bottom (minimal: LLA + Ping)
+            const grid = document.getElementById('switch-available-grid');
+            const available = sensors.filter(s => s.status === 'indefinite');
+
+            if (available.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1; padding:20px; text-align:center; color:#64748b;">No indefinite sensors available for swap.</div>';
             } else {
-                labelWrap.style.display = 'none';
+                grid.innerHTML = available.map(s => renderModalSensorCard(s, true, 'indefinite')).join('');
             }
 
-            // Show coords if exists
-            const coordsWrap = document.getElementById('switch-old-coords-wrap');
-            if (currentModalSensor.xyz) {
-                coordsWrap.style.display = 'block';
-                document.getElementById('switch-old-coords').innerText = `X: ${currentModalSensor.xyz.x}, Y: ${currentModalSensor.xyz.y}, Z: ${currentModalSensor.xyz.z}`;
-            } else {
-                coordsWrap.style.display = 'none';
-            }
+            // 3. Reset selection
+            selectedSwapSensor = null;
+            document.getElementById('confirm-swap-btn').disabled = true;
+            document.getElementById('confirm-swap-btn').innerText = 'Select a New Unit to Proceed';
 
-            // Reset new info — only show LLAs from Indefinite sensors
-            const select = document.getElementById('switch-new-lla');
-            select.innerHTML = '<option value="">— Choose LLA —</option>';
-            sensors.filter(s => s.status === 'indefinite').forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s.lla;
-                opt.textContent = s.lla;
-                select.appendChild(opt);
-            });
-
-            document.getElementById('switch-new-lla-display-wrap').style.display = 'none';
+            const reasonElem = document.getElementById('swap-reason');
+            if (reasonElem) reasonElem.value = 'BATTERY'; // Default
 
             document.getElementById('switch-modal').classList.add('active');
         }
 
+        function renderModalSensorCard(s, isSelectable, type) {
+            const onClick = isSelectable ? `onclick="selectNewSensorUnit(${s.num})"` : '';
+            const selectableStyle = isSelectable ? 'cursor:pointer;' : 'opacity:0.9; pointer-events:none;';
+
+            let html = `
+                <div class="modal-sensor-card" id="modal-card-${s.num}" ${onClick} style="${selectableStyle}">
+                    <div class="name">Sensor ${s.sensorNum}</div>
+                    <div class="lla">ID: ${s.lla}</div>
+            `;
+
+            if (type === 'current') {
+                html += `
+                    <div style="font-size:0.75rem; color:#64748b; margin-top:5px; border-top:1px solid #f1f5f9; padding-top:5px;">
+                        <div>Last Seen: ${s.lastSeenStr}</div>
+                        <div>Coords: X:${s.xyz.x}, Y:${s.xyz.y}, Z:${s.xyz.z}</div>
+                    </div>
+                `;
+            } else if (type === 'indefinite') {
+                html += `
+                    <button class="modal-ping-btn" onclick="pingModalSensor(${s.num}, event)" title="Ping Unit">
+                        <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                    </button>
+                `;
+            }
+
+            html += `</div>`;
+            return html;
+        }
+
+        function pingModalSensor(num, event) {
+            if (event) event.stopPropagation();
+
+            const card = document.getElementById(`modal-card-${num}`);
+            if (!card) return;
+
+            card.style.transform = 'scale(1.08)';
+            card.style.boxShadow = '0 0 25px rgba(124, 58, 237, 0.4)';
+            card.style.borderColor = '#7c3aed';
+
+            setTimeout(() => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+                card.style.borderColor = (selectedSwapSensor && selectedSwapSensor.num === num) ? '#7c3aed' : '';
+            }, 800);
+        }
+
+        function selectNewSensorUnit(num) {
+            const isAlreadySelected = selectedSwapSensor && selectedSwapSensor.num === num;
+
+            // Remove previous selection from all
+            document.querySelectorAll('.modal-sensor-card').forEach(c => c.classList.remove('selected'));
+
+            const btn = document.getElementById('confirm-swap-btn');
+
+            if (isAlreadySelected) {
+                // Deselect
+                selectedSwapSensor = null;
+                btn.disabled = true;
+                btn.innerText = 'Select a New Unit to Proceed';
+            } else {
+                // Select new
+                const card = document.getElementById(`modal-card-${num}`);
+                if (card) card.classList.add('selected');
+
+                selectedSwapSensor = sensors.find(s => s.num === num);
+                btn.disabled = false;
+                btn.innerText = `Confirm Swap with Sensor ${selectedSwapSensor.sensorNum}`;
+            }
+        }
+
+        function submitSwap() {
+            if (!selectedSwapSensor || !currentModalSensor) return;
+
+            const newLla = selectedSwapSensor.lla;
+            const reason = document.getElementById('swap-reason').value;
+            const confirmMsg = `Are you sure you want to swap Sensor ${currentModalSensor.sensorNum} with ${selectedSwapSensor.sensorNum}?\n\nReason: ${reason}\n\nThis will transfer the experiment settings to the new unit and mark the current unit as REPLACED.`;
+
+            showCustomAlert(confirmMsg, true, (confirmed) => {
+                if (confirmed) {
+                    // 1. Mark current as REPLACED
+                    currentModalSensor.status = 'replaced';
+                    currentModalSensor.replaced = true;
+                    currentModalSensor.replacedWithLla = newLla;
+                    currentModalSensor.alert = `Replaced: ${reason}`;
+                    currentModalSensor.temp = '--';
+                    currentModalSensor.light = '--';
+                    currentModalSensor.battery = '--';
+                    currentModalSensor.rh = '--';
+
+                    // 2. Transfer properties to selected indefinite sensor
+                    selectedSwapSensor.status = 'active';
+                    selectedSwapSensor.indefinite = false;
+                    selectedSwapSensor.expName = currentModalSensor.expName;
+                    selectedSwapSensor.sensorNum = currentModalSensor.sensorNum; // Keep the target research number
+                    selectedSwapSensor.xyz = { ...currentModalSensor.xyz };
+                    selectedSwapSensor.labels = [...currentModalSensor.labels];
+                    selectedSwapSensor.lastSeenStr = 'Just Now';
+                    selectedSwapSensor.lastSeenDate = new Date();
+
+                    // 3. Success Feedback
+                    closeSwitchModal();
+                    closeModal(); // Close detail modal
+                    renderGrid();
+                    showCustomAlert(`Swap Complete! Sensor ${selectedSwapSensor.sensorNum} is now active at LLA ${newLla} due to ${reason}.`);
+                }
+            });
+        }
+
         function closeSwitchModal() {
             document.getElementById('switch-modal').classList.remove('active');
-        }
-
-        function pingSpecificSensor(type) {
-            if (type === 'old') {
-                const card = document.getElementById('switch-old-unit-card');
-                card.style.transform = 'scale(1.05)';
-                card.style.boxShadow = '0 0 20px rgba(130, 195, 171, 0.5)';
-                card.style.borderColor = '#82c3ab';
-
-                setTimeout(() => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = '';
-                    card.style.borderColor = '#d1e2da';
-                }, 600);
-            } else {
-                // For 'new' unit, we animate the modal card to "pop"
-                const newLla = document.getElementById('switch-new-lla').value.trim();
-                if (!newLla) {
-                    alert('Please select a new LLA to ping.');
-                    return;
-                }
-
-                const card = document.getElementById('switch-new-unit-card');
-                card.style.transform = 'scale(1.05)';
-                card.style.boxShadow = '0 0 20px rgba(240, 180, 74, 0.4)';
-                card.style.borderColor = '#f0b44a';
-
-                setTimeout(() => {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = '';
-                    card.style.borderColor = '#fce8cc';
-                }, 600);
-            }
-        }
-
-        function performSwitch() {
-            const newLla = document.getElementById('switch-new-lla').value.trim();
-            if (!newLla) {
-                alert('Please select a new LLA.');
-                return;
-            }
-
-            const manualLla = prompt(`Are you sure you want to switch? \n\nPlease enter the LLA of the new sensor (${newLla}) to confirm:`);
-
-            if (manualLla === null) return; // User cancelled
-
-            if (manualLla !== newLla) {
-                alert('Error: LLA does not match. Switch cancelled.');
-                return;
-            }
-
-            // Update LLA
-            currentModalSensor.lla = newLla;
-
-            // Close modals
-            closeSwitchModal();
-            closeModal(); // Close the detail modal too
-
-            // Refresh
-            renderGrid();
-            alert('Success: Unit switched.');
         }
 
         // Start on home page
